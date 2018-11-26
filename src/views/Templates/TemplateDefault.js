@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Container, Visibility } from 'semantic-ui-react';
 import Menu from '../../components/Menu';
 import FixedMenu from '../../components/Menu/FixedMenu';
@@ -8,12 +9,12 @@ import SidebarMenu from '../../components/Menu/SidebarMenu';
 import Footer from '../../components/Footer';
 import Intro from '../../components/Intro';
 
-const onOnScreen = () => {
+export const onOnScreen = () => {
   const banner = document.querySelectorAll('.top.fixed');
   banner[0].classList.add('hidden');
 };
 
-const offScreen = () => {
+export const offScreen = () => {
   const banner = document.querySelectorAll('.top.fixed');
   banner[0].classList.remove('hidden');
 };
