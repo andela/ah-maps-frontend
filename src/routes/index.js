@@ -1,12 +1,12 @@
 import LandingPage from '../views/Landingpage';
 
-const indexRoutes = [
+const routes = [
   {
     path: '/',
     name: 'Landing Page',
     component: LandingPage,
   },
-  
+
 ];
 
-export default indexRoutes;
+export default routes;
