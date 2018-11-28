@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './assets/styles/scss/index.sass';
 import { store } from './redux/store';
-import App from './views/Landingpage';
+import routes from './routes/index';
 import * as serviceWorker from './serviceWorker';
+
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Switch>
+        {routes.map((route, key) => (
+          <Route exact path={route.path} component={route.component} key={key} />
+        ))}
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );
