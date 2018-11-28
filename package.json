@@ -15,6 +15,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
+    "sass-watch": "^0.1.0",
     "semantic-ui-react": "^0.83.0"
   },
   "scripts": {
@@ -22,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coveralls": "react-scripts test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "sass:watch": "./src/assets/scss -o ./src/assets/styles/css --watch",
+    "sass:build": "./src/assets/scss -o ./scr/assets/styles/css"
   },
   "eslintConfig": {
     "extends": "react-app"
