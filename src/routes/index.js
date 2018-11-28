@@ -1,4 +1,5 @@
 import LandingPage from '../views/Landingpage';
+import Login from '../views/Login';
 
 const routes = [
   {

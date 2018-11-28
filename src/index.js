@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './assets/styles/scss/index.sass';
 import { store } from './redux/store';
@@ -10,13 +10,13 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <BrowserRouter>
       <Switch>
         {routes.map((route, key) => (
           <Route exact path={route.path} component={route.component} key={key} />
         ))}
       </Switch>
-    </Router>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );
