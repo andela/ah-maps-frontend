@@ -7,6 +7,12 @@ const routes = [
     component: LandingPage,
   },
 
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+
 ];
 
 export default routes;
