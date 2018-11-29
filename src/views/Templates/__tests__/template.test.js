@@ -32,9 +32,5 @@ it('renders Template with menu component without crashing', () => {
 it('should on scroll functions to be defined', () => {
   document.body.innerHTML = '<div class="top fixed">Hello</div>';
   const banner = document.querySelectorAll('.top.fixed');
-  console.warn(onOnScreen.banner)
-  // const variable = onOnScreen()
-  // expect(variable.banner).toBeDefined();
   expect(onOnScreen).toBeDefined();
-  // expect(offScreen).toBeDefined();
 });

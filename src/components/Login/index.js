@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './style.css';
+import './style.sass';
 
 const Login = () => (
   <div className="ui raised very padded center aligned text container segment container-main">
