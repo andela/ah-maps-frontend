@@ -2,6 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/andela/ah-maps-frontend/badge.svg?branch=develop&cacheBuster=1)](https://coveralls.io/github/andela/ah-maps-frontend?branch=develop)
 [![Build Status](https://travis-ci.org/andela/ah-maps-frontend.svg?branch=develop&cacheBuster=1)](https://travis-ci.org/andela/ah-maps-frontend)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2d5c179b2e655d60e4ea/maintainability)](https://codeclimate.com/github/andela/ah-maps-frontend/maintainability)
 
 ## Vision
 Create a community of like minded authors to foster inspiration and innovation by leveraging the modern web.
