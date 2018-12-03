@@ -7,13 +7,12 @@ import { store } from './redux/store';
 import routes from './routes/index';
 import * as serviceWorker from './serviceWorker';
 
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        {routes.map((route, key) => (
-          <Route exact path={route.path} component={route.component} key={key} />
+        {routes.map(route => (
+          <Route exact path={route.path} component={route.component} key={route.path} />
         ))}
       </Switch>
     </BrowserRouter>
