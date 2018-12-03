@@ -1,4 +1,4 @@
-import { ADD_ARTICLES } from '../constants';
+import { ADD_ARTICLES } from '../../constants';
 
 export const addArticles = payload => ({
   type: ADD_ARTICLES,
