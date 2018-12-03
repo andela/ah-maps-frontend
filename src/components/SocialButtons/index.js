@@ -15,7 +15,6 @@ const SocialButtons = () => (
       <i className="google plus icon" />
     </button>
     <br />
-    <br />
   </div>
 );
 

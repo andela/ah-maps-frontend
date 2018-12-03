@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default class MenuExampleBasic extends Component {
   state = {}
@@ -30,16 +31,16 @@ export default class MenuExampleBasic extends Component {
         </Menu.Item>
 
         <Menu.Item className="login-signup">
-          <a href="#/login">
+          <Link to="/login">
             <span className="ui inverted button">
           Login
             </span>
-          </a>
-          <a href="/signup">
+          </Link>
+          <Link to="/signup">
             <span className="ui inverted button">
           Sign Up
             </span>
-          </a>
+          </Link>
         </Menu.Item>
       </Menu>
     );

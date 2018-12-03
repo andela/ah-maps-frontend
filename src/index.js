@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './assets/styles/scss/index.sass';
+import './assets/styles/scss/App.sass';
 import { store } from './redux/store';
 import routes from './routes/index';
 import * as serviceWorker from './serviceWorker';
