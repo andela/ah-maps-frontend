@@ -1,4 +1,4 @@
-import { ADD_ARTICLES } from '../constants';
+import { ADD_ARTICLES } from '../../constants';
 
 const initialState = {};
 
