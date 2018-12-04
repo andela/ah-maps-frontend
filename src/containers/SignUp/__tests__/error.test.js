@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import Error from '../Errors';
 
 it('should render Error component', () => {
-  shallow(<Error errors={{}} />);
+  shallow(<Error errors={{ name: 'dummy' }} />);
 });

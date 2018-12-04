@@ -18,10 +18,14 @@ export const signUpSuccess = payload => ({
   payload,
 });
 
-export const SignUpRequest = data => dispatch => api.post('users/', data).then((response) => {
-  dispatch(signUpSuccess(response.data.user));
-}).catch((error) => {
-  dispatch(signUpError(error.response ? error.response.data.errors : {}));
-});
+export const SignUpRequest = data => (dispatch) => {
+  api({ url: 'users/', method: 'post', data })
+    .then((response) => {
+      dispatch(signUpSuccess(response.data.user));
+    })
+    .catch((error) => {
+      dispatch(signUpError(error.response ? error.response.data.errors : {}));
+    });
+};
 
 export default signUpUser;

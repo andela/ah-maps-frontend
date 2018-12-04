@@ -68,6 +68,7 @@ class SignUp extends Component {
         label: 'Username',
         value: username,
         name: 'username',
+        id: 'username',
         type: 'text',
         icon: 'user outline',
         placeholder: 'Username',
@@ -78,6 +79,7 @@ class SignUp extends Component {
         label: 'Email',
         value: email,
         name: 'email',
+        id: 'email',
         type: 'email',
         icon: 'mail outline',
         placeholder: 'Email',
@@ -88,6 +90,7 @@ class SignUp extends Component {
         label: 'Password',
         value: password,
         name: 'password',
+        id: 'password',
         type: 'password',
         icon: 'lock',
         placeholder: 'Password',
@@ -98,6 +101,7 @@ class SignUp extends Component {
         label: 'Confirm Password',
         value: confirmPassword,
         name: 'confirmPassword',
+        id: 'confirmPassword',
         type: 'password',
         icon: 'lock',
         placeholder: 'Confirm Password',
@@ -114,7 +118,7 @@ class SignUp extends Component {
             {Object.keys(signup.errors).length > 0
               && <Error errors={signup.errors} />
             }
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} id="signup-form">
               { inputs.map(input => (
                 <React.Fragment key={input.name}>
                   <Input {...input} />
