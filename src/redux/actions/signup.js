@@ -24,7 +24,13 @@ export const SignUpRequest = data => (dispatch) => {
       dispatch(signUpSuccess(response.data.user));
     })
     .catch((error) => {
-      dispatch(signUpError(error.response ? error.response.data.errors : {}));
+      let issue = {};
+      if (error.message === 'Network Error') {
+        issue = { error: 'Network error' };
+      } else {
+        issue = error.response.data.errors;
+      }
+      dispatch(signUpError(issue));
     });
 };
 
