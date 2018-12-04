@@ -5,6 +5,7 @@ import {
 const initialState = {
   errors: [],
   success: false,
+  status: 'error',
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -13,13 +14,15 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         success: true,
-        errors: [],
+        errors: payload,
+        status: 'success',
       };
     case SIGNUP_ERROR:
       return {
         ...state,
         success: false,
         errors: payload,
+        status: 'error',
       };
 
     default:

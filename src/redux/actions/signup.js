@@ -1,7 +1,11 @@
+import { createBrowserHistory } from 'history';
 import {
   SIGNUP_USER, SIGNUP_ERROR, SIGNUP_SUCCESS,
 } from '../../constants';
 import api from '../../utils/api';
+
+
+const history = createBrowserHistory();
 
 export const signUpUser = payload => ({
   type: SIGNUP_USER,
@@ -21,10 +25,20 @@ export const signUpSuccess = payload => ({
 export const SignUpRequest = data => (dispatch) => {
   api({ url: 'users/', method: 'post', data })
     .then((response) => {
-      dispatch(signUpSuccess(response.data.user));
+      const res = { message: response.data.user.success };
+      dispatch(signUpSuccess(res));
+      history.replace('/login');
+      setTimeout(() => { window.location.reload(); }, 3000);
     })
     .catch((error) => {
-      dispatch(signUpError(error.response ? error.response.data.errors : {}));
+      let issue = {};
+      if (error.message === 'Network Error') {
+        issue = { error: 'Network error' };
+      } else {
+        issue = error.response.data.errors;
+      }
+      issue = issue === 'undefined' ? {} : issue;
+      dispatch(signUpError(issue));
     });
 };
 
