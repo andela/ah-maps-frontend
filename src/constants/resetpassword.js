@@ -1,0 +1,8 @@
+export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE';
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
+export const SHOW_MISMATCH = 'SHOW_MISMATCH';
+export const SHOW_ERROR = 'SHOW_ERROR';
+
+export default SUCCESS_MESSAGE;

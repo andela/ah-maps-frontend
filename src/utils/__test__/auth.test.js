@@ -1,4 +1,4 @@
-import { USER_TOKEN_TEST } from '../../constants';
+import { USER_TOKEN } from '../../constants';
 import { getToken, setToken, removeToken } from '..';
 
 it('should get null token', () => {
@@ -6,8 +6,8 @@ it('should get null token', () => {
 });
 
 it('should get null token', () => {
-  setToken(USER_TOKEN_TEST);
-  expect(getToken()).toEqual(USER_TOKEN_TEST);
+  setToken(USER_TOKEN);
+  expect(getToken()).toEqual(USER_TOKEN);
 });
 
 it('should remove token from localstorage', () => {

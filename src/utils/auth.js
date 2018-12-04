@@ -8,6 +8,7 @@ import { TOKEN_KEY } from '../constants';
 export const setToken = (token, key = TOKEN_KEY) => {
   localStorage.setItem(key, JSON.stringify(token));
 };
+
 /**
  * Get token from localstorage
  * @param {!string} key token object key

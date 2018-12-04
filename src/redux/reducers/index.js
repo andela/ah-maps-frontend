@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import articles from './articles';
 import signup from './signup';
 import login from './login';
+import resetpassword from './resetpassword';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -12,6 +13,8 @@ const allReducers = combineReducers({
   articles,
   signup,
   login,
+  resetpassword,
+
 });
 
 export default allReducers;
