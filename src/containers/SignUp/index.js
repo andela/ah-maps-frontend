@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Input } from '../../components/elements';
-import { testEmail, passwordRegex } from '../../utils';
+import { testEmail, passwordRegex, usernameRegex } from '../../utils';
 import { SignUpRequest } from '../../redux/actions';
 import Error from './Errors';
 
@@ -38,6 +38,7 @@ class SignUp extends Component {
     if (password === '') errors.password = 'Password required';
     if (!passwordRegex.test(password)) errors.password = 'Password should contain at least 8 charaters, a letter and a number';
     if (username === '') errors.username = 'Username required';
+    if (!usernameRegex.test(username)) errors.username = 'Invalid username';
     if (email === '') errors.email = 'Email required';
     if (!testEmail.test(email)) errors.email = 'Please enter a valid email';
     if (password !== confirmPassword) errors.confirmPassword = 'Passwords do not match';
@@ -115,9 +116,17 @@ class SignUp extends Component {
           <div className="column">
             <h1 className="ui header">Sign Up</h1>
             <br />
-            {Object.keys(signup.errors).length > 0
-              && <Error errors={signup.errors} />
+            {signup.success
+             && Object.keys(signup.errors).length > 0
+              && <Error errors={signup.errors} status={signup.status} />
+
             }
+            {!signup.success
+             && Object.keys(signup.errors).length > 0
+              && <Error errors={signup.errors} status={signup.status} />
+
+            }
+
             <form onSubmit={this.handleSubmit} id="signup-form">
               { inputs.map(input => (
                 <React.Fragment key={input.name}>
