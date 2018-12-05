@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Input } from '../../components/elements';
 import { testEmail, passwordRegex, usernameRegex } from '../../utils';
 import { SignUpRequest } from '../../redux/actions';
+import { SocialButtons } from '../../components/SocialButtons';
 import Error from './Errors';
 
 class SignUp extends Component {
@@ -111,62 +112,31 @@ class SignUp extends Component {
       },
     ];
     return (
-      <div className="wrapper ui middle align center">
-        <div className=" ui raised very padded center aligned text container segment container-main">
-          <div className="column">
-            <h1 className="ui header">Sign Up</h1>
-            <br />
-            {signup.success
+      <div className=" ui raised very padded center aligned text container segment container-main">
+        <h1 className="ui header">Sign Up</h1>
+        {signup.success
              && Object.keys(signup.errors).length > 0
               && <Error errors={signup.errors} status={signup.status} />
-
             }
-            {!signup.success
+        {!signup.success
              && Object.keys(signup.errors).length > 0
               && <Error errors={signup.errors} status={signup.status} />
-
             }
-
-            <form onSubmit={this.handleSubmit} id="signup-form">
-              { inputs.map(input => (
-                <React.Fragment key={input.name}>
-                  <Input {...input} />
-                  <br />
-                </React.Fragment>
-              ))}
-
-              <div className="actions">
-                <button className="ui large teal button" type="submit">Sign Up</button>
-              </div>
-            </form>
-            <br />
-            <div className="container">
-              <div className="ui horizontal divider">
-            Or
-              </div>
-            </div>
-            <br />
-            <div className="container">
-              <button type="button" className="ui circular facebook icon button">
-                <i className="facebook icon" />
-              </button>
-              <button type="button" className="ui circular twitter icon button">
-                <i className="twitter icon" />
-              </button>
-              <button type="button" className="ui circular google plus icon button">
-                <i className="google plus icon" />
-              </button>
-            </div>
-            <br />
-            <p>
+        <form onSubmit={this.handleSubmit} id="signup-form">
+          { inputs.map(input => (
+            <React.Fragment key={input.name}>
+              <Input {...input} />
+              <br />
+            </React.Fragment>
+          ))}
+          <button className="ui large teal button" type="submit">Sign Up</button>
+        </form>
+        <SocialButtons />
+        <p>
   Already have an account?
-              {' '}
-              <Link to="login">Login</Link>
-            </p>
-          </div>
-        </div>
+          <Link to="login"> Login</Link>
+        </p>
       </div>
-
     );
   }
 }

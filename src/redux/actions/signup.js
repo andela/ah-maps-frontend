@@ -1,16 +1,11 @@
 import { createBrowserHistory } from 'history';
 import {
-  SIGNUP_USER, SIGNUP_ERROR, SIGNUP_SUCCESS,
+  SIGNUP_ERROR, SIGNUP_SUCCESS,
 } from '../../constants';
 import api from '../../utils/api';
 
 
 const history = createBrowserHistory();
-
-export const signUpUser = payload => ({
-  type: SIGNUP_USER,
-  payload,
-});
 
 export const signUpError = payload => ({
   type: SIGNUP_ERROR,
@@ -42,4 +37,4 @@ export const SignUpRequest = data => (dispatch) => {
     });
 };
 
-export default signUpUser;
+export default SignUpRequest;

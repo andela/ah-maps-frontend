@@ -1,3 +1,2 @@
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
-export const SIGNUP_USER = 'SIGNUP_USER';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';

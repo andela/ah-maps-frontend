@@ -2,7 +2,7 @@ import {
   SIGNUP_ERROR, SIGNUP_SUCCESS,
 } from '../../constants';
 
-const initialState = {
+export const initialState = {
   errors: [],
   success: false,
   status: 'error',
