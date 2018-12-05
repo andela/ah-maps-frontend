@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider } from 'semantic-ui-react';
 
-export const SocialButtons = () => (
+const SocialButtons = () => (
   <div>
     <Divider horizontal>Or</Divider>
     <br />

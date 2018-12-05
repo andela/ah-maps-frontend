@@ -1,3 +1,3 @@
 export * from './validation';
 export * from './auth';
-export { client } from './api';
+export { api } from './api';

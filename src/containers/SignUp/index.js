@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Input } from '../../components/elements';
 import { testEmail, passwordRegex, usernameRegex } from '../../utils';
-import { SignUpRequest } from '../../redux/actions';
-import { SocialButtons } from '../../components/SocialButtons';
-import Error from './Errors';
+import { SignUpRequest, signUpError } from '../../redux/actions';
+import SignupForm from '../../components/Signup';
 
 class SignUp extends Component {
   state = {
@@ -55,13 +52,28 @@ class SignUp extends Component {
     event.preventDefault();
 
     if (this.validate()) {
-      const { register } = this.props;
-      register({ ...this.state });
+      const { register, registerError, history } = this.props;
+      register({ ...this.state })
+        .then(
+          setTimeout(() => history.push('/login'), 3000),
+        )
+        .catch((error) => {
+          let issue = {};
+          if (error.message === 'Network Error') {
+            issue = { error: 'Network error' };
+          } else {
+            try {
+              issue = error.response.data.errors;
+            } catch (err) { issue = { ...issue }; }
+          }
+          issue = issue === 'undefined' ? {} : issue;
+          registerError(issue);
+        });
     }
   }
 
   render() {
-    const { signup } = this.props;
+    const { signup, ...rest } = this.props;
     const {
       username, password, email, confirmPassword, errors,
     } = this.state;
@@ -112,31 +124,12 @@ class SignUp extends Component {
       },
     ];
     return (
-      <div className=" ui raised very padded center aligned text container segment container-main">
-        <h1 className="ui header">Sign Up</h1>
-        {signup.success
-             && Object.keys(signup.errors).length > 0
-              && <Error errors={signup.errors} status={signup.status} />
-            }
-        {!signup.success
-             && Object.keys(signup.errors).length > 0
-              && <Error errors={signup.errors} status={signup.status} />
-            }
-        <form onSubmit={this.handleSubmit} id="signup-form">
-          { inputs.map(input => (
-            <React.Fragment key={input.name}>
-              <Input {...input} />
-              <br />
-            </React.Fragment>
-          ))}
-          <button className="ui large teal button" type="submit">Sign Up</button>
-        </form>
-        <SocialButtons />
-        <p>
-  Already have an account?
-          <Link to="login"> Login</Link>
-        </p>
-      </div>
+      <SignupForm
+        inputs={inputs}
+        handleSubmit={this.handleSubmit}
+        signup={signup}
+        {...rest}
+      />
     );
   }
 }
@@ -149,6 +142,7 @@ const mapStateToProps = state => ({
 // Get actions and pass them as props
 const matchDispatchToProps = dispatch => bindActionCreators({
   register: SignUpRequest,
+  registerError: signUpError,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(SignUp);

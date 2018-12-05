@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Input = ({ ...props }) => {
+const Input = ({ ...props }) => {
   const {
     onChange,
     className,

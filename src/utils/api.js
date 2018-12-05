@@ -19,8 +19,8 @@ export const client = axios.create({
   },
 });
 
-export default ({ method, url, data }) => client({
-  url,
-  method,
-  data,
-});
+export const api = {
+  user: {
+    signup: data => client.post('users/', data),
+  },
+};

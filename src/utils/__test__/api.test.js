@@ -1,6 +1,6 @@
-import { client, authUserHeader } from '../api';
+import { api, client, authUserHeader } from '../api';
 import { setToken } from '..';
-import { USER_TOKEN } from '../../constants';
+import { USER_TOKEN_TEST } from '../../constants';
 
 describe('Should test axios api requests', async () => {
   it('should test axios client request', () => {
@@ -15,7 +15,16 @@ describe('Should test axios api requests', async () => {
   });
 
   it('should add authentication header with token', () => {
-    setToken(USER_TOKEN);
+    setToken(USER_TOKEN_TEST);
     expect(authUserHeader()).toEqual({});
+  });
+});
+
+describe('Should test axios api requests', async () => {
+  it('should test axios client request', () => {
+    api.user.signup({})
+      .then((response) => {
+        expect(response).toBe(Promise({}));
+      });
   });
 });
