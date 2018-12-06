@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FixedMenu = () => (
   <div className="ui large top secondary inverted fixed hidden menu">
@@ -9,11 +10,11 @@ const FixedMenu = () => (
       <a href="#sdf" className="item">FASHION</a>
       <div className="right menu">
         <div className="item">
-          <a href="/login">
+          <Link to="/login">
             <span className="ui primary button ">
           Login
             </span>
-          </a>
+          </Link>
 
         </div>
         <div className="item">

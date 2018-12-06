@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-
 import articles from './articles';
 import signup from './signup';
+import login from './login';
+
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
  * Your entire applications state (store) is just whatever gets returned from all your reducers
@@ -10,6 +11,7 @@ import signup from './signup';
 const allReducers = combineReducers({
   articles,
   signup,
+  login,
 });
 
 export default allReducers;
