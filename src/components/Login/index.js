@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '../elements';
-import SocialButtons from '../SocialButtons';
 import './style.sass';
+import { SocialAuth } from '../SocialButtons';
 
 const LoginForm = ({ ...props }) => {
   const {
@@ -27,7 +27,7 @@ const LoginForm = ({ ...props }) => {
         <br />
         <button type="submit" className="ui large teal button">Login</button>
         <br />
-        <SocialButtons {...rest} />
+        <SocialAuth {...rest} />
         <p>
 Don&apos;t have an account?
           <Link to="signup"> Sign Up</Link>
