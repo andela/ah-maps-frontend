@@ -1,10 +1,10 @@
 import React from 'react';
 import TemplateWithoutMenu from './Templates/TemplateWithoutMenu';
-import LoginComponent from '../components/Login';
+import LoginComponent from '../containers/Login';
 
-const Login = () => (
+const Login = ({ ...props }) => (
   <TemplateWithoutMenu>
-    <LoginComponent />
+    <LoginComponent {...props} />
   </TemplateWithoutMenu>
 );
 

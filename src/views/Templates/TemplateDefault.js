@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Container, Visibility } from 'semantic-ui-react';
 import Menu from '../../components/Menu';
 import FixedMenu from '../../components/Menu/FixedMenu';
