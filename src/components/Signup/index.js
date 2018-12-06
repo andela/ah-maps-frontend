@@ -7,7 +7,7 @@ import Message from './Message';
 
 const SignupForm = ({ ...props }) => {
   const {
-    signup, inputs, handleSubmit, ...rest
+    signup, inputs, handleSubmit, loading, ...rest
   } = props;
 
   return (
@@ -21,7 +21,7 @@ const SignupForm = ({ ...props }) => {
              && Object.keys(signup.errors).length > 0
               && <Message errors={signup.errors} status={signup.status} />
             }
-      <form onSubmit={handleSubmit} id="signup-form">
+      <form onSubmit={handleSubmit} className={loading ? 'ui loading form' : ''} id="signup-form">
         { inputs.map(input => (
           <React.Fragment key={input.name}>
             <Input {...input} />

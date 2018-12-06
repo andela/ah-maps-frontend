@@ -5,13 +5,14 @@ import { testEmail, passwordRegex, usernameRegex } from '../../utils';
 import { SignUpRequest, signUpError } from '../../redux/actions';
 import SignupForm from '../../components/Signup';
 
-class SignUp extends Component {
+export class SignUp extends Component {
   state = {
     username: '',
     password: '',
     email: '',
     confirmPassword: '',
     errors: {},
+    loading: false,
   }
 
   onChange = (event) => {
@@ -52,13 +53,16 @@ class SignUp extends Component {
     event.preventDefault();
 
     if (this.validate()) {
+      this.setState({ loading: true });
       const { register, registerError, history } = this.props;
       register({ ...this.state })
-        .then(
-          setTimeout(() => history.push('/login'), 3000),
-        )
+        .then(() => {
+          this.setState({ loading: false });
+          setTimeout(() => history.push('/login'), 3000);
+        })
         .catch((error) => {
           let issue = {};
+          this.setState({ loading: false });
           if (error.message === 'Network Error') {
             issue = { error: 'Network error' };
           } else {
@@ -75,7 +79,8 @@ class SignUp extends Component {
   render() {
     const { signup, ...rest } = this.props;
     const {
-      username, password, email, confirmPassword, errors,
+      username, password, email,
+      confirmPassword, errors, loading,
     } = this.state;
     const inputs = [
       {
@@ -128,6 +133,7 @@ class SignUp extends Component {
         inputs={inputs}
         handleSubmit={this.handleSubmit}
         signup={signup}
+        loading={loading}
         {...rest}
       />
     );
