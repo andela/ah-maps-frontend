@@ -1,6 +1,6 @@
 import { LOGIN_ERROR, LOGIN_SUCCESS, REMOVE_MESSAGE } from '../../constants';
 
-const initialState = {
+export const initialState = {
   errors: [],
   success: false,
   message: '',

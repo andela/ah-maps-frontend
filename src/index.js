@@ -7,14 +7,27 @@ import './assets/styles/scss/App.sass';
 import { store } from './redux/store';
 import routes from './routes/index';
 import * as serviceWorker from './serviceWorker';
+import Login from './views/Login';
+import { PrivateRoute } from './routes/Private';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        {routes.map(route => (
-          <Route exact path={route.path} component={route.component} key={route.path} />
-        ))}
+        <Route path="/login" component={Login} />
+        {routes.map((prop) => {
+          if (prop.protected) {
+            return (
+              <PrivateRoute
+                exact
+                path={prop.path}
+                component={prop.component}
+                key={prop.path}
+              />
+            );
+          }
+          return <Route exact path={prop.path} component={prop.component} key={prop.path} />;
+        })}
       </Switch>
     </BrowserRouter>
   </Provider>,

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { getToken } from './auth';
+import { isLoggedIn, getToken } from './auth';
 
 export const authUserHeader = () => {
   const user = getToken();
-  if (user && user.token) {
+  if (isLoggedIn()) {
     return {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${user.user.token}`,
     };
   }
   return {};

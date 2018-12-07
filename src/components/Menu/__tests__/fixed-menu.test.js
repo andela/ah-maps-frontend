@@ -5,7 +5,7 @@ import App from '../index';
 import FixedMenu from '../FixedMenu';
 
 it('renders Menu component without crashing', () => {
-  shallow(<FixedMenu />);
+  shallow(<FixedMenu RightMenu={() => ''} />);
 });
 
 it('renders Fixed Menu component without crashing', () => {
