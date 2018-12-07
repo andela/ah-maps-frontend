@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import LoginForm from '../../components/Login';
 import { setToken, removeToken } from '../../utils';
