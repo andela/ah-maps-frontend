@@ -40,14 +40,7 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     const { signin, signInSuccess, signInError, clearMessage, history } = this.props;
-=======
-    const {
-      signin, 
-      signInError, signInSuccess, clearMessage, history,
-    } = this.props;
->>>>>>> feat(react router): implement authentication on routes (#17)
     removeToken();
     signin({ ...this.state }).then((response) => {
       signInSuccess(response.data.user);
