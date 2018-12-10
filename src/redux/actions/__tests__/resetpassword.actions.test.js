@@ -52,5 +52,4 @@ describe('actions', () => {
     };
     expect(showErrorMessage(payload)).toEqual(expectedAction);
   });
-
 });

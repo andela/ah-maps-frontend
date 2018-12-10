@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Input } from '../elements';
 import './style.sass';
 import { SocialAuth } from '../SocialButtons';
+import Rating from '../../containers/Rating';
 
 const LoginForm = ({ ...props }) => {
   const {
@@ -31,8 +32,11 @@ const LoginForm = ({ ...props }) => {
         <p>
 Don&apos;t have an account?
           <Link to="signup"> Sign Up</Link>
+
+          
         </p>
       </form>
+      <Rating />
     </div>
   );
 };

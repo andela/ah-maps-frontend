@@ -26,5 +26,7 @@ export const api = {
     resetPassword: data => client.post('user/resetpassword', data),
     update: data => client.put(`user/update/${data.token}`, { password: data.password }),
     social: data => client.post('users/social_auth/', data),
+    rate: data => client.post(`rate/${data.slug}/`, { your_rating: data.rating }),
+    fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
   },
 };
