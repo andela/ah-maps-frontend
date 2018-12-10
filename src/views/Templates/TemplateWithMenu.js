@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Grid } from 'semantic-ui-react';
-import Menu from '../../components/Menu';
-import Footer from '../../components/Footer';
+import FixedMenu from '../../components/Menu/FixedMenu';
+import Logo from '../../components/Menu/Logo';
 
-const TemplateWithoutMenu = ({ children }) => (
-  <Container>
-    <Grid.Row>
-      <Grid.Column>
-        <Menu />
-        {children}
-        <Footer />
-      </Grid.Column>
-    </Grid.Row>
-  </Container>
+const TemplateWithMenu = ({ children }) => (
+  <React.Fragment>
+    <FixedMenu fixed="" hidden="" RightMenu={() => ''} />
+    <div className="pusher">
+      <Logo />
+
+      {children}
+    </div>
+  </React.Fragment>
 );
 
-TemplateWithoutMenu.propTypes = { children: PropTypes.element.isRequired };
+TemplateWithMenu.propTypes = { children: PropTypes.element.isRequired };
 
-export default TemplateWithoutMenu;
+export default TemplateWithMenu;

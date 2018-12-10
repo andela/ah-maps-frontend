@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import AuthMenuItem from './AuthMenuItem';
+import { isLoggedIn } from '../../utils/auth';
 
 export default class MenuExampleBasic extends Component {
   state = {}
@@ -30,18 +31,7 @@ export default class MenuExampleBasic extends Component {
           Reviews
         </Menu.Item>
 
-        <Menu.Item className="login-signup">
-          <Link to="/login">
-            <span className="ui inverted button">
-          Login
-            </span>
-          </Link>
-          <Link to="/signup">
-            <span className="ui inverted button">
-          Sign Up
-            </span>
-          </Link>
-        </Menu.Item>
+        <AuthMenuItem authenticated={isLoggedIn()} />
       </Menu>
     );
   }
