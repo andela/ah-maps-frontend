@@ -22,3 +22,11 @@ export const getToken = (key = TOKEN_KEY) => JSON.parse(localStorage.getItem(key
 export const removeToken = (key = TOKEN_KEY) => {
   localStorage.removeItem(key);
 };
+
+/** check if user is logged in */
+export const isLoggedIn = () => {
+  try {
+    const user = getToken();
+    return !!user.user.token;
+  } catch (error) { return error === false; }
+};

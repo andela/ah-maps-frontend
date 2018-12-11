@@ -3,6 +3,7 @@ import articles from './articles';
 import signup from './signup';
 import login from './login';
 import resetpassword from './resetpassword';
+import tags from './tags';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -14,7 +15,7 @@ const allReducers = combineReducers({
   signup,
   login,
   resetpassword,
-
+  tags,
 });
 
 export default allReducers;

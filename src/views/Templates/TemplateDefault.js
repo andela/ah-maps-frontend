@@ -19,7 +19,7 @@ export const offScreen = () => {
 };
 const TemplateDefault = ({ children }) => (
   <React.Fragment>
-    <FixedMenu />
+    <FixedMenu RightMenu={() => ''} />
     <SidebarMenu />
     <div className="pusher">
       <Logo />

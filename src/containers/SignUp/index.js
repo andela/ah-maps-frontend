@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { testEmail, passwordRegex, usernameRegex } from '../../utils';
-import { SignUpRequest, signUpError } from '../../redux/actions';
+import { signUpError, signUpSuccess } from '../../redux/actions';
 import SignupForm from '../../components/Signup';
+import { api } from '../../utils/api';
 
 export class SignUp extends Component {
   state = {
@@ -54,10 +55,12 @@ export class SignUp extends Component {
 
     if (this.validate()) {
       this.setState({ loading: true });
-      const { register, registerError, history } = this.props;
-      register({ ...this.state })
-        .then(() => {
+      const { registerError, history } = this.props;
+      api.user.signup({ ...this.state })
+        .then((response) => {
           this.setState({ loading: false });
+          const res = { message: response.data.user.success };
+          signUpSuccess(res);
           setTimeout(() => history.push('/login'), 3000);
         })
         .catch((error) => {
@@ -147,8 +150,8 @@ const mapStateToProps = state => ({
 
 // Get actions and pass them as props
 const matchDispatchToProps = dispatch => bindActionCreators({
-  register: SignUpRequest,
   registerError: signUpError,
+  registerSuccess: signUpSuccess,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(SignUp);

@@ -1,12 +1,22 @@
-import article from '../articles';
+import article, { initialState } from '../articles';
+import {
+  ADD_ARTICLES, ADD_ARTICLES_ERROR,
+} from '../../../constants';
 
-const articles = { name: 'article', id: 1 };
 describe('Article reducers', () => {
   it('should provide the initial state', () => {
-    expect(article(undefined, {})).toEqual({});
+    expect(article(undefined, {})).toEqual(initialState);
   });
 
-  it('should add articles to the state', () => {
-    expect(article(articles, {})).toEqual(articles);
+  it('should add article to the state', () => {
+    expect(article(initialState, {})).toEqual(initialState);
+  });
+
+  it('should set article success', () => {
+    expect(article(initialState, { type: ADD_ARTICLES }).success).toEqual(true);
+  });
+
+  it('should set article error', () => {
+    expect(article(initialState, { type: ADD_ARTICLES_ERROR, payload: {} }).success).toEqual(false);
   });
 });
