@@ -3,5 +3,5 @@ import { shallow } from 'enzyme';
 import Message from '../index';
 
 it('renders Landingpage component without crashing', () => {
-  shallow(<Message />);
+  shallow(<Message message="hello world" />);
 });

@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { Divider } from 'semantic-ui-react';
 import { api } from '../../utils/api';
+import { setToken } from '../../utils';
 
 
 let provider = '';
@@ -18,7 +19,7 @@ export const responseHandler = (response) => {
     access_token: accessToken,
     provider,
   }).then((res) => {
-    localStorage.setItem('token', res.data.user.token);
+    setToken(res.data);
     // TODO: Redirect to home page.
   });
 };

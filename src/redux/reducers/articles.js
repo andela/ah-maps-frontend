@@ -1,11 +1,29 @@
-import { ADD_ARTICLES } from '../../constants';
+import { ADD_ARTICLES, ADD_ARTICLES_ERROR } from '../../constants';
 
-const initialState = {};
+export const initialState = {
+  success: false,
+  article: {},
+  status: 'error',
+  errors: [],
+  editor_content: '',
+};
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case ADD_ARTICLES:
-      return action.payload;
+      return {
+        ...state,
+        success: true,
+        article: payload,
+        status: 'success',
+      };
+    case ADD_ARTICLES_ERROR:
+      return {
+        ...state,
+        success: false,
+        errors: payload,
+        status: 'error',
+      };
     default:
       return state;
   }
