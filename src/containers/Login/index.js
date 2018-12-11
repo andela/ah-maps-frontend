@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { LogInRequest } from '../../redux/actions/login';
 import LoginForm from '../../components/Login';
+import { setToken, removeToken } from '../../utils';
+import {
+  loginError, loginSuccess, removeMessage, LogInRequest,
+} from '../../redux/actions';
 
 class Login extends Component {
   constructor(props) {
@@ -26,16 +29,37 @@ class Login extends Component {
     });
   };
 
-  renderMessage = () => (
-    <div className={this.props.success ? 'ui floating message success' : 'ui floating message error'}>
-      { this.props.message }
-    </div>
-  )
+  renderMessage = () => {
+    const { success, message } = this.props;
+    return (
+      <div className={success ? 'ui floating message success' : 'ui floating message error'}>
+        { message }
+      </div>
+    );
+  }
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { signin } = this.props;
-    signin({ ...this.state });
+    const { signin, signInSuccess, signInError, clearMessage, history } = this.props;
+    removeToken();
+    signin({ ...this.state }).then((response) => {
+      signInSuccess(response.data.user);
+      setToken(response.data);
+      setTimeout(() => {
+        clearMessage();
+        history.push('/');
+      }, 3000);
+    })
+      .catch((error) => {
+        let issue = {};
+        if (error.message === 'Network Error') {
+          issue = { error: 'Network error' };
+        } else {
+          issue = error.response.data.errors;
+        }
+        signInError(issue.error);
+        setTimeout(() => { clearMessage(); }, 5000);
+      });
   }
 
   render() {
@@ -82,6 +106,9 @@ const mapStateToProps = state => ({
 
 const matchDispatchToProps = dispatch => bindActionCreators({
   signin: LogInRequest,
+  signInSuccess: loginSuccess,
+  signInError: loginError,
+  clearMessage: removeMessage,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(Login);

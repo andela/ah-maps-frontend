@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import Landingpage from '../Landingpage';
 import SignUpPage from '../SignUp';
 import LoginPage from '../Login';
-import Login from '../Login';
 import ForgotPassword from '../ForgotPassword';
 import ResetPassword from '../ResetPassword';
 
@@ -25,8 +24,4 @@ it('renders ForgotPassword component without crashing', () => {
 
 it('renders ResetPassword component without crashing', () => {
   shallow(<ResetPassword />);
-});
-
-it('renders Logincomponent without crashing', () => {
-  shallow(<Login />);
 });

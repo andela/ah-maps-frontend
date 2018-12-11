@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { getToken } from './auth';
+import { isLoggedIn, getToken } from './auth';
 
 export const authUserHeader = () => {
   const user = getToken();
-  if (user && user.token) {
+  if (isLoggedIn()) {
     return {
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${user.user.token}`,
     };
   }
   return {};
@@ -26,5 +26,6 @@ export const api = {
     resetPassword: data => client.post('user/resetpassword', data),
     update: data => client.put(`user/update/${data.token}`, { password: data.password }),
     social: data => client.post('users/social_auth/', data),
+    article: data => client.post('article/create', data),
   },
 };

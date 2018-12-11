@@ -1,3 +1,3 @@
 export const ADD_ARTICLES = 'ADD_ARTICLES';
-
-export default ADD_ARTICLES;
+export const ADD_ARTICLES_ERROR = 'ADD_ARTICLES_ERROR';
+export const EDITOR_CONTENT = 'EDITOR_CONTENT';
