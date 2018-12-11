@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { removeToken } from '../../utils/auth';
-=======
-import { removeToken } from '../../utils';
->>>>>>> feat(react router): implement authentication on routes
 
 const AuthMenuItem = ({ ...props }) => {
   const { authenticated } = props;

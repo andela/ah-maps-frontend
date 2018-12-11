@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../elements/Input';
 import { SocialAuth } from '../SocialButtons';
 import Message from './Message';
+import LikeButton from '../../containers/LikeButtons';
 
 
 const SignupForm = ({ ...props }) => {
@@ -35,6 +36,7 @@ const SignupForm = ({ ...props }) => {
   Already have an account?
         <Link to="login"> Login</Link>
       </p>
+      <LikeButton />
     </div>
   );
 };

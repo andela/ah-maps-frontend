@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import AuthMenuItem from './AuthMenuItem';
-<<<<<<< HEAD
 import { isLoggedIn } from '../../utils/auth';
-=======
-import { isLoggedIn } from '../../utils';
->>>>>>> feat(react router): implement authentication on routes
 
 export default class MenuExampleBasic extends Component {
   state = {}
