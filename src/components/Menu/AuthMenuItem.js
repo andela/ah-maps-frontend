@@ -29,14 +29,19 @@ const AuthMenuItem = ({ ...props }) => {
         : (
           <React.Fragment>
             <div className="item">
-              <a href="#logout" id="logout" onClick={() => removeToken()}>
-                <span className="ui primary button theme-button-color">Logout</span>
-              </a>
+              <Link to="/profile">
+                <Icon name="user" size="big" />
+              </Link>
             </div>
             <div className="item">
               <Link to="/article">
                 <Icon name="plus circle" size="big" />
               </Link>
+            </div>
+            <div className="item">
+              <a href="#logout" id="logout" onClick={() => removeToken()}>
+                <span className="ui primary button theme-button-color">Logout</span>
+              </a>
             </div>
           </React.Fragment>
         )

@@ -28,13 +28,8 @@ export const api = {
     social: data => client.post('users/social_auth/', data),
     rate: data => client.post(`rate/${data.slug}/`, { your_rating: data.rating }),
     fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
-  },
-  article: {
-    list: () => client.get('article/'),
-    single: slug => client.get(`article/detail/${slug}/`),
-    update: (slug, data) => client.put(`article/update/${slug}/`, data),
-    delete: slug => client.delete(`article/delete/${slug}/`),
-    create: data => client.post('article/create', data),
+    profile: username => client.get(`profile/${username}/`, { user: username }),
+    editProfile: (username, data) => client.put(`/profile/update/${username}/`, data),
   },
   article: {
     list: () => client.get('article/'),

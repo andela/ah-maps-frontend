@@ -6,3 +6,4 @@ export * from './rating';
 export {
   setArticles, getArticles,
 } from './articleList';
+export * from './profile';

@@ -5,6 +5,7 @@ import login from './login';
 import resetpassword from './resetpassword';
 import rating from './rating';
 import articlelist from './articlesList';
+import profileReducer from './profile';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -18,6 +19,8 @@ const allReducers = combineReducers({
   login,
   resetpassword,
   rating,
+  profileReducer,
+
 });
 
 export default allReducers;
