@@ -26,10 +26,10 @@ export const api = {
     resetPassword: data => client.post('user/resetpassword', data),
     update: data => client.put(`user/update/${data.token}`, { password: data.password }),
     social: data => client.post('users/social_auth/', data),
-    article: data => client.post('article/create', data),
   },
   article: {
     list: () => client.get('article/'),
     single: slug => client.get(`article/update/${slug}/`),
+    create: data => client.post('article/create', data),
   },
 };

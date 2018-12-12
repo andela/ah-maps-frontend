@@ -32,7 +32,12 @@ export class ArticleList extends Component {
           <React.Fragment>
             {articles.results.map(article => (
 
-              <ArticleCard {...this.props} {...article} readingTime={article.reading_time} key={article.slug} />
+              <ArticleCard
+                {...this.props}
+                {...article}
+                readingTime={article.reading_time}
+                key={article.slug}
+              />
 
             ))
         }

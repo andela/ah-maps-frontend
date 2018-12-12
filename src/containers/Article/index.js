@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Article from '../../components/Article';
 import { addArticles, addArticlesError } from '../../redux/actions';
 
 import { api } from '../../utils/api';
-import upload from '../../utils/upload';
 
 export class index extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
-
   state ={
     title: '',
     body: '',
-    image: '',
+    imageFile: '',
     errors: {},
     loading: false,
   }
@@ -31,51 +25,45 @@ export class index extends Component {
     });
   };
 
-  // getImages = (state, content) => {
-  //   const { blocks } = content;
-  //   if (blocks[0].type === 'image') {
-  //     console.log('yupp');
-  //   }
-  // };
-
   onImageChange = (image) => {
-    this.setState({ articleImage: image });
+    this.setState({ imageFile: image[0] });
   }
 
-  changeDem = (state, content) => {
+  onEditorChange = (state, content) => {
     const { blocks } = content;
-    if (blocks[0].type === 'image') {
-      const { data: { url } } = blocks[0];
-      const chosenimage = url;
-      this.setState({ image: chosenimage });
-    } else {
-      this.setState({
-        body: blocks[0].text,
-      });
-    }
-  };
-
-  handleUpload = (file, state) => {
-    upload({
-      body: file,
-      progress: (e) => {
-        state.updateProgressBar(e);
-      },
-    })
-      .then((data) => {
-        state.uploadCompleted(data.secure_url);
-      });
+    this.setState({ body: blocks });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    api.user.article({ ...this.state })
+    const { add, addError, history } = this.props;
+    const { title, body, imageFile } = this.state;
+    this.setState({ loading: true });
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('body', body);
+    formData.append('image_file', imageFile);
+
+    api.article.create(formData)
       .then((response) => {
+        this.setState({ loading: false });
         const res = response.data;
-        addArticles(res);
+        add(res);
+        history.push(`/article/${res.slug}`);
       })
       .catch((error) => {
-        addArticlesError(error);
+        let issue = {};
+        this.setState({ loading: false });
+        if (error.message === 'Network Error') {
+          issue = { error: 'Network error' };
+        } else {
+          try {
+            issue = error.response.data.errors;
+          } catch (err) { issue = { ...issue }; }
+        }
+        issue = issue === 'undefined' ? {} : issue;
+        addError(issue);
       });
   }
 
@@ -88,10 +76,10 @@ export class index extends Component {
         <Article
           title={title}
           onChange={this.onChange}
-          article={articles}
+          articles={articles}
           handleSubmit={this.handleSubmit}
-          changeDem={this.changeDem}
-          handleUpload={this.handleUpload}
+          onEditorChange={this.onEditorChange}
+          onImageChange={this.onImageChange}
           {...this.state}
           {...this.props}
         />
@@ -105,8 +93,8 @@ const mapStateToProps = state => ({
 });
 
 const matchDispatchToProps = dispatch => bindActionCreators({
-  addArticles,
-  addArticlesError,
+  add: addArticles,
+  addError: addArticlesError,
 }, dispatch);
 
 

@@ -4,7 +4,7 @@ export const initialState = {
   success: false,
   article: {},
   status: 'error',
-  errors: [],
+  errors: {},
   editor_content: '',
 };
 
@@ -16,6 +16,7 @@ export default (state = initialState, { type, payload }) => {
         success: true,
         article: payload,
         status: 'success',
+        errors: { message: 'Article created successfully' },
       };
     case ADD_ARTICLES_ERROR:
       return {

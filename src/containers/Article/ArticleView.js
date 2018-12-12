@@ -20,8 +20,7 @@ export class ArticleList extends Component {
   }
 
   componentDidMount() {
-    const { addArticles, match: { params } } = this.props;
-    console.warn(params.slug, 'shit goest here ');
+    const { match: { params } } = this.props;
     api.article.single(params.slug)
       .then((response) => {
         this.setState({ article: response.data });
@@ -30,7 +29,6 @@ export class ArticleList extends Component {
   }
 
   render() {
-    const { articles } = this.props;
     return (
       <div>
         <ArticleView {...this.state} />
