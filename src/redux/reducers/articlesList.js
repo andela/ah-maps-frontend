@@ -1,6 +1,6 @@
 import { SET_ARTICLES } from '../../constants';
 
-const initialState = {
+export const initialState = {
   links: {
     next: null,
     previous: null,

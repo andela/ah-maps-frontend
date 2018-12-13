@@ -4,7 +4,7 @@ import { Container, Grid } from 'semantic-ui-react';
 
 const Card = ({ children }) => (
   <Container>
-    <Grid.Row>
+    <Grid.Row centered>
       <Grid.Column>
         <div className="ui link cards">
           {children}

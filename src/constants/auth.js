@@ -1,4 +1,4 @@
-export const TOKEN_KEY = 'Token';
+export const TOKEN_KEY = 'jwtToken';
 export const USER_TOKEN = {
   user: {
     email: 'map@gmail.com',

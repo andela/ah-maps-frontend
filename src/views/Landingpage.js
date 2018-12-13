@@ -1,10 +1,10 @@
 import React from 'react';
-import App from '../components/LandingPage';
+import App from '../containers/Article/ArticleList';
 import TemplateDefault from './Templates/TemplateDefault';
 
-const LandingPage = () => (
+const LandingPage = ({ ...props }) => (
   <TemplateDefault>
-    <App />
+    <App {...props} />
   </TemplateDefault>
 );
 

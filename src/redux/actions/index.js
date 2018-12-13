@@ -3,5 +3,5 @@ export * from './articles';
 export * from './signup';
 export * from './resetpassword';
 export {
-  setArticles,
+  setArticles, getArticles,
 } from './articleList';

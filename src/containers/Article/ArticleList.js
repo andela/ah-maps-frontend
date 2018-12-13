@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setArticles } from '../../redux/actions';
-import { api } from '../../utils';
+import { setArticles, getArticles } from '../../redux/actions';
 import Card from '../../components/Card';
 import ArticleCard from '../../components/Article/ArticleCard';
 
@@ -12,49 +11,61 @@ export class ArticleList extends Component {
     addArticles: PropTypes.func.isRequired,
   }
 
-  state = {}
+  state = {
+    loading: true,
+  }
 
   componentDidMount() {
-    const { addArticles } = this.props;
-    api.article.list({})
+    const { addArticles, fetchArticles } = this.props;
+    fetchArticles({})
       .then((response) => {
+        this.setState({ loading: false });
         addArticles(response.data);
       })
-      .catch(err => console.warn(err));
+      .catch((err) => {
+        console.error(err);
+        this.setState({ loading: false });
+      });
   }
 
   render() {
     const { articles } = this.props;
-    return (
-      <div>
+    const { loading } = this.state;
+    return loading
+      ? (
+        <div className="ui loading form text-center">Loading...</div>
+      )
+      : (
+        <div>
 
-        <Card>
-          <React.Fragment>
-            {articles.results.map(article => (
+          <Card>
+            <React.Fragment>
+              {articles.results.map(article => (
 
-              <ArticleCard
-                {...this.props}
-                {...article}
-                readingTime={article.reading_time}
-                key={article.slug}
-              />
+                <ArticleCard
+                  {...this.props}
+                  {...article}
+                  readingTime={article.reading_time}
+                  key={article.slug}
+                />
 
-            ))
+              ))
         }
-          </React.Fragment>
+            </React.Fragment>
 
-        </Card>
-      </div>
-    );
+          </Card>
+        </div>
+      );
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   articles: state.articlelist,
 });
 
 const mapDispatchToProps = {
   addArticles: setArticles,
+  fetchArticles: getArticles,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);
