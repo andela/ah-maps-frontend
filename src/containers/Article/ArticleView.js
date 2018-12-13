@@ -17,23 +17,33 @@ export class ArticleList extends Component {
         followers: [],
       },
     },
+    slug: '',
   }
 
   componentDidMount() {
     const { match: { params } } = this.props;
+    this.setState({ slug: params.slug });
     api.article.single(params.slug)
       .then((response) => {
         this.setState({ article: response.data });
       })
-      .catch(err => console.warn(err));
+      .catch(err => console.error(err));
+  }
+
+  redirect = () => {
+    const { slug } = this.state;
+    const { history } = this.props;
+    history.push(`/article/update/${slug}`);
   }
 
   render() {
-    return (
+    const { article } = this.state;
+    const { body } = article;
+    return body ? (
       <div>
-        <ArticleView {...this.state} />
+        <ArticleView {...this.state} redirect={this.redirect} />
       </div>
-    );
+    ) : <div />;
   }
 }
 

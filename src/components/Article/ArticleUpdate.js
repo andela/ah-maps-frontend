@@ -12,7 +12,7 @@ import './styles.sass';
 
 const Article = ({ ...props }) => {
   const {
-    onChange, title, errors,
+    onChange, title, body, errors,
     handleSubmit, onEditorChange,
     onImageChange, articles, loading, readOnly,
   } = props;
@@ -37,6 +37,8 @@ const Article = ({ ...props }) => {
               }
             </Form.Field>
             <Form.Field>
+              {title !== ''
+              && (
               <Dante
                 data_storage={{
                   interval: 1000,
@@ -44,7 +46,7 @@ const Article = ({ ...props }) => {
                   method: 'POST',
                   save_handler: onEditorChange,
                 }}
-                content={null}
+                content={body}
                 body_placeholder="Write your story here"
                 read_only={readOnly}
                 widgets={[
@@ -53,6 +55,8 @@ const Article = ({ ...props }) => {
                   PlaceholderBlockConfig(),
                 ]}
               />
+              )
+            }
               {errors.body
               && <div className="ui pointing red basic label">{errors.body}</div>}
             </Form.Field>
@@ -62,7 +66,7 @@ const Article = ({ ...props }) => {
           <Grid.Column width={4}>
             <ImageUploader
               withIcon
-              buttonText="Choose images"
+              buttonText="Update article image"
               onChange={onImageChange}
               imgExtension={['.jpg', '.gif', '.png', '.gif']}
               maxFileSize={5242880}

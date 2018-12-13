@@ -1,4 +1,4 @@
-import { ADD_ARTICLES, ADD_ARTICLES_ERROR } from '../../constants';
+import { ADD_ARTICLES, ADD_ARTICLES_ERROR, REMOVE_ARTICLE_MESSAGE } from '../../constants';
 
 export const initialState = {
   success: false,
@@ -17,6 +17,13 @@ export default (state = initialState, { type, payload }) => {
         article: payload,
         status: 'success',
         errors: { message: 'Article created successfully' },
+      };
+    case REMOVE_ARTICLE_MESSAGE:
+      return {
+        ...state,
+        success: true,
+        visible: false,
+        errors: [],
       };
     case ADD_ARTICLES_ERROR:
       return {
