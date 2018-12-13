@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
 import { removeToken } from '../../utils/auth';
 
 const AuthMenuItem = ({ ...props }) => {
@@ -26,11 +27,18 @@ const AuthMenuItem = ({ ...props }) => {
           </React.Fragment>
         )
         : (
-          <div className="item">
-            <a href="#logout" id="logout" onClick={() => removeToken()}>
-              <span className="ui primary button theme-button-color">Logout</span>
-            </a>
-          </div>
+          <React.Fragment>
+            <div className="item">
+              <a href="#logout" id="logout" onClick={() => removeToken()}>
+                <span className="ui primary button theme-button-color">Logout</span>
+              </a>
+            </div>
+            <div className="item">
+              <Link to="/article">
+                <Icon name="plus circle" size="big" />
+              </Link>
+            </div>
+          </React.Fragment>
         )
 
         }

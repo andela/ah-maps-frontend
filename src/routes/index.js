@@ -42,19 +42,25 @@ const routes = [
   },
   {
     path: '/article',
-    name: 'Article',
+    name: 'Create Article',
     protected: true,
     component: Article,
   },
   {
     path: '/articles',
-    name: 'Articles',
+    name: 'List Articles',
     component: ArticlesList,
   },
   {
     path: '/article/:slug',
     name: 'View Article',
     component: ArticleView,
+  },
+  {
+    path: '/article/update/:slug',
+    name: 'Update Article',
+    protected: true,
+    component: Article,
   },
   {
     path: '*',

@@ -45,10 +45,14 @@ Followers
 
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  author: PropTypes.shape({}).isRequired,
   readingTime: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired,
+};
+
+ArticleCard.defaultProps = {
+  image: ARTICLE_IMAGE,
 };
 export default ArticleCard;

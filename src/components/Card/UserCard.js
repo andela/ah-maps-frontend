@@ -41,7 +41,7 @@ Card.propTypes = {
 };
 Card.defaultProps = {
   image: PROFILE_AVATAR,
-  author: { username: '' },
+  author: { username: '', image: PROFILE_AVATAR },
   readingTime: '',
   date: '',
 };
