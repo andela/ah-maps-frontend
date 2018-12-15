@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import AuthMenuItem from './AuthMenuItem';
-import { isLoggedIn } from '../../utils';
+import { isLoggedIn } from '../../utils/auth';
 
 export default class MenuExampleBasic extends Component {
   state = {}
