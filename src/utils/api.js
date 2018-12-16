@@ -27,4 +27,11 @@ export const api = {
     update: data => client.put(`user/update/${data.token}`, { password: data.password }),
     social: data => client.post('users/social_auth/', data),
   },
+  article: {
+    list: () => client.get('article/'),
+    single: slug => client.get(`article/detail/${slug}/`),
+    update: (slug, data) => client.put(`article/update/${slug}/`, data),
+    delete: slug => client.delete(`article/delete/${slug}/`),
+    create: data => client.post('article/create', data),
+  },
 };
