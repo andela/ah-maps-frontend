@@ -7,6 +7,7 @@ import PageNotFound from '../components/PageNotFound';
 import Article from '../views/Article';
 import ArticlesList from '../views/ArticleList';
 import ArticleView from '../views/Article/Articleview';
+
 /**
  * Routing details
  * path: string: url path
