@@ -9,6 +9,8 @@ import {
 } from '../../redux/actions';
 import './style.sass';
 import { isLoggedIn } from '../../utils/auth';
+import { isOwner} from "../../utils/permissions";
+import { Dimmer, Loader, Segment } from 'semantic-ui-react'
 
 
 class Rating extends Component {
@@ -19,54 +21,64 @@ class Rating extends Component {
     };
   }
 
-  componentDidMount = () => {
-    const { getRating } = this.props;
-    getRating({ slug: 'how-to-train-your-dragon' });
-  }
+  show = size => () => { 
+    const { slug, getRating } = this.props;
+    this.setState({ size, open: true })
+    getRating({ slug: slug });
+  };
 
-  show = size => () => this.setState({ size, open: true });
-
-  close = () => this.setState({ open: false });
+  close = () => {
+    const {refresh} = this.props;
+    refresh();
+    this.setState({ open: false })
+  };
 
   changeRating = (newRating) => {
-    const { rate } = this.props;
-    rate({ rating: newRating, slug: 'how-to-train-your-dragon' });
+    const { rate, slug } = this.props;
+    rate({ rating: newRating, slug: slug });
   }
 
   render() {
-    const { avgRating, userRating } = this.props;
+    const {userRating, rating, title, username, loading } = this.props;
     const { open, size } = this.state;
     return (
-      <div>
-
-        <Button className={isLoggedIn() ? 'theme-color' : 'theme-color disabled'} onClick={this.show('mini')}>Rate</Button>
-
+      <div className="rating">
         <Modal size={size} open={open} onClose={this.close}>
-          <Modal.Header>Review</Modal.Header>
+          <Modal.Header>{title} </Modal.Header>
           <Modal.Content>
-            <div>
-              <StarRatings
-                rating={userRating}
-                starRatedColor="gold"
-                changeRating={this.changeRating}
-                numberOfStars={5}
-                name="rating"
-                starDimension="20px"
-                starSpacing="3px"
-              />
-            </div>
+
+          <Segment className="loading-rating">
+                <Dimmer className={loading ? "active " : null }>
+                    <Loader size='tiny'>your previous rating is....</Loader>
+                </Dimmer>
+
+                <StarRatings
+                      rating={userRating}
+                      starRatedColor="gold"
+                      changeRating={this.changeRating}
+                      numberOfStars={5}
+                      name="rating"
+                      starDimension="20px"
+                      starSpacing="3px"
+                    />
+
+            </Segment>
+           
           </Modal.Content>
           <Modal.Actions>
             <Button className="theme-color" onClick={this.close}>Done</Button>
           </Modal.Actions>
-        </Modal>
+          </Modal>
 
         <StarRatings
-          rating={avgRating}
+          rating={rating}
           starDimension="20px"
           starSpacing="5px"
           starRatedColor="gold"
         />
+
+        <Button className={isLoggedIn() && !isOwner(username) ? 'theme-color' : 'theme-color disabled'} onClick={this.show('mini')}>Rate</Button>
+              
       </div>
 
     );
@@ -82,6 +94,7 @@ Rating.propTypes = {
 const mapStateToProps = state => ({
   avgRating: state.rating.average_rating,
   userRating: state.rating.your_rating,
+  loading: state.rating.loading,
 });
 
 const matchDispatchToProps = dispatch => bindActionCreators({

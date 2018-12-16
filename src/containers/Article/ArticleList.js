@@ -16,6 +16,10 @@ export class ArticleList extends Component {
   }
 
   componentDidMount() {
+    this.refreshArticles();
+  }
+
+  refreshArticles = () =>{
     const { addArticles, fetchArticles } = this.props;
     fetchArticles({})
       .then((response) => {
@@ -47,6 +51,9 @@ export class ArticleList extends Component {
                   {...article}
                   readingTime={article.reading_time}
                   key={article.slug}
+                  rating={article.rating}
+                  refresh={this.refreshArticles}
+                  
                 />
 
               ))

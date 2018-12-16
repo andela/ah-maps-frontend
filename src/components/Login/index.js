@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Input } from '../elements';
 import './style.sass';
 import { SocialAuth } from '../SocialButtons';
-import Rating from '../../containers/Rating';
 
 const LoginForm = ({ ...props }) => {
   const {
@@ -36,7 +35,6 @@ Don&apos;t have an account?
           
         </p>
       </form>
-      <Rating />
     </div>
   );
 };
