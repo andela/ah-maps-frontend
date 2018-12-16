@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import ReactRouterEnzymeContext from 'react-router-enzyme-context';
 import { Article, mapStateToProps } from '../ArticleView';
 import { initialState } from '../../../redux/reducers/articles';
@@ -16,14 +16,19 @@ describe('<ArticleView />', () => {
   });
 
   it('renders ArticleView component without crashing', () => {
-    shallow(
+    const mockedTryLoginProp = jest.fn(() => api.article.single());
+    const wrapper = mount(
       <Article
         articles={ARTICLE}
         match={{ params: ARTICLE.slug }}
         addArticles={() => {}}
-        singleArticle={api.article.single}
+        singleArticle={mockedTryLoginProp}
+        removeArticle={mockedTryLoginProp}
         history={{}}
       />, options,
     );
+    const node = wrapper.instance();
+    node.deleteArticle();
+    expect(mockedTryLoginProp).toBeCalled();
   });
 });

@@ -10,7 +10,7 @@ const ArticleImage = (props) => {
         withIcon
         buttonText="Choose images"
         onChange={onImageChange}
-        imgExtension={['.jpg', '.gif', '.png']}
+        imgExtension={['.jpg', '.gif', '.png', 'jpeg']}
         maxFileSize={5242880} // 5 MB
         withPreview
         singleImage
