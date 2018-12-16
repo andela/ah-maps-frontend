@@ -8,6 +8,8 @@ import './articleView.sass';
 import UserCard from '../Card/UserCard';
 import Editor from './Editor';
 import { isOwner } from '../../utils/permissions';
+import LikeButton from '../../containers/LikeButtons';
+
 
 const ArticleView = ({ ...props }) => {
   const { article, redirect } = props;
@@ -43,6 +45,7 @@ const ArticleView = ({ ...props }) => {
         <Grid.Row>
           <Grid.Column>
             <Editor body={body} />
+            <LikeButton slug={article.slug} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

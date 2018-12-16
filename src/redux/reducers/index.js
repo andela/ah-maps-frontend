@@ -3,11 +3,9 @@ import articles from './articles';
 import signup from './signup';
 import login from './login';
 import resetpassword from './resetpassword';
-<<<<<<< HEAD
-import articlelist from './articlesList';
-=======
 import like from './like';
->>>>>>> feat(like/dislike articles): implement liking and disliking of articles and comments
+import articlelist from './articlesList';
+
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store

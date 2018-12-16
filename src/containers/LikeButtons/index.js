@@ -10,27 +10,30 @@ import {
 
 class LikeButton extends Component {
   componentDidMount = () => {
+    const { slug } = this.props;
     const { fetchLikes } = this.props;
 
     fetchLikes({
-      slug: 'mirriam-117', // TODO: params.slug after merge
+      slug,
     });
   }
 
   handleLikeClick = () => {
     const { addLike } = this.props;
+    const { slug } = this.props;
 
     addLike({
-      slug: 'mirriam-117', // TODO: params.slug after merge
+      slug,
     });
   }
 
   handleDislikeClick = () => {
     const { addDislike } = this.props;
+    const { slug } = this.props;
 
     addDislike({
-      slug: 'mirriam-117', // TODO: params.slug after merge
-    })
+      slug,
+    });
   }
 
   render() {
@@ -41,7 +44,7 @@ class LikeButton extends Component {
     const DislikeLabel = disliked ? 'Undislike' : 'Dislike';
     return (
       <div className="customContainer">
-        <div type='button' className={isLoggedIn() ? 'ui red button' : 'ui disabled red button'} id="like-btn" onClick={this.handleLikeClick}>
+        <div className={isLoggedIn() ? 'ui red button' : 'ui disabled red button'} id="like-btn" onClick={this.handleLikeClick}>
           <i className="heart icon" />
           { LikeLabel }
         </div>
@@ -60,10 +63,14 @@ class LikeButton extends Component {
   }
 }
 LikeButton.propTypes = {
-  liked: PropTypes.bool,
-  disliked: PropTypes.bool,
-  likeCount: PropTypes.number,
-  dislikeCount: PropTypes.number,
+  liked: PropTypes.bool.isRequired,
+  disliked: PropTypes.bool.isRequired,
+  likeCount: PropTypes.number.isRequired,
+  dislikeCount: PropTypes.number.isRequired,
+  addLike: PropTypes.func.isRequired,
+  addDislike: PropTypes.func.isRequired,
+  fetchLikes: PropTypes.func.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 const matchDispatchToProps = dispatch => bindActionCreators({
