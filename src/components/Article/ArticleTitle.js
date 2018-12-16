@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 
-function ArticleTitle(props) {
+const ArticleTitle = (props) => {
   const { onChange, title, errors } = props;
   return (
     <Form.Field>
@@ -12,7 +12,7 @@ function ArticleTitle(props) {
               }
     </Form.Field>
   );
-}
+};
 
 ArticleTitle.propTypes = {
   onChange: PropTypes.func.isRequired,

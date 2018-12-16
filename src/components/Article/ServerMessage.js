@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Message from '../Signup/Message';
 
-function ServerMessage(props) {
+const ServerMessage = (props) => {
   const { articles } = props;
   return (
     <div>
@@ -16,7 +16,7 @@ function ServerMessage(props) {
                 }
     </div>
   );
-}
+};
 
 ServerMessage.propTypes = {
   articles: PropTypes.shape({}).isRequired,
