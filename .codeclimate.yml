@@ -30,3 +30,6 @@ checks:
   identical-code:
     config:
       threshold: 250
+exclude_patterns:
+  - "**/tests/" 
+  - "**/*.test.*"

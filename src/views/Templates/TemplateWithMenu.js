@@ -5,11 +5,12 @@ import Logo from '../../components/Menu/Logo';
 
 const TemplateWithMenu = ({ children }) => (
   <React.Fragment>
-    <FixedMenu fixed="" hidden="" RightMenu={() => ''} />
+    <FixedMenu fixed="fixed" hidden="" RightMenu={() => ''} />
     <div className="pusher">
       <Logo />
-
-      {children}
+      <div className="main-content">
+        {children}
+      </div>
     </div>
   </React.Fragment>
 );
