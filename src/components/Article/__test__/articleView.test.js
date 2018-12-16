@@ -7,7 +7,7 @@ import { setToken } from '../../../utils/auth';
 
 const article = {
   author: { followers: [], username: USER_TOKEN.user.username },
-  body: 'some article body',
+  body: '[{}]',
   image: 'image.png',
 };
 describe('<ArticleView />', () => {

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {
   Grid, Container, Image, Button,
 } from 'semantic-ui-react';
+import Dante from 'Dante2';
 import { ARTICLE_IMAGE } from '../../constants';
 import './articleView.sass';
 import UserCard from '../Card/UserCard';
-import Editor from './Editor';
 import { isOwner } from '../../utils/permissions';
 
 const ArticleView = ({ ...props }) => {
@@ -48,7 +48,17 @@ const ArticleView = ({ ...props }) => {
 
         <Grid.Row>
           <Grid.Column>
-            <Editor body={body} />
+            {body ? (
+              <div>
+                <Dante
+                  content={{
+                    blocks: JSON.parse(body),
+                    entityMap: {},
+                  }}
+                  read_only
+                />
+              </div>
+            ) : <div />}
           </Grid.Column>
         </Grid.Row>
       </Grid>

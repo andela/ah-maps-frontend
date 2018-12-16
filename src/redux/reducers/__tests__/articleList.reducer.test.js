@@ -11,6 +11,11 @@ describe('Article reducers', () => {
   });
 
   it('should set articles success', () => {
-    expect(article(initialState, { type: SET_ARTICLES, payload: initialState }).loading).toEqual(true);
+    expect(
+      article(
+        initialState,
+        { type: SET_ARTICLES, payload: initialState },
+      ).loading,
+    ).toEqual(true);
   });
 });
