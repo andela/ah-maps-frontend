@@ -18,13 +18,16 @@ class Rating extends Component {
     super(props);
     this.state = {
       open: false,
+      newRating: null,
     };
   }
 
   showModal = size => () => { 
-    const { slug, getRating } = this.props;
+    const { slug, getRating, userRating } = this.props;
     this.setState({ size, open: true })
     getRating({ slug: slug });
+    this.setState({ newRating:  userRating});
+
   };
 
   closeModal = () => {
@@ -34,13 +37,20 @@ class Rating extends Component {
   };
 
   changeRating = (newRating) => {
+    console.log('++++++++++++++',newRating)
+    this.setState({ newRating: newRating })
+  }
+
+  sendRating = () => {
     const { rate, slug } = this.props;
+    const { newRating} = this.state;
     rate({ rating: newRating, slug: slug });
+    
   }
 
   render() {
-    const {userRating, rating, title, username, loading } = this.props;
-    const { open, size } = this.state;
+    const { rating, title, username, loading } = this.props;
+    const { open, size, newRating } = this.state;
     return (
       <div className="rating">
         <Modal size={size} open={open} onClose={this.closeModal}>
@@ -53,7 +63,7 @@ class Rating extends Component {
                 </Dimmer>
 
                 <StarRatings
-                      rating={userRating}
+                      rating={newRating}
                       starRatedColor="gold"
                       changeRating={this.changeRating}
                       numberOfStars={5}
@@ -61,12 +71,11 @@ class Rating extends Component {
                       starDimension="20px"
                       starSpacing="3px"
                     />
-
             </Segment>
            
-          </Modal.Content>
+        </Modal.Content>
           <Modal.Actions>
-            <Button className="theme-color" onClick={this.closeModal}>Done</Button>
+            <Button className="theme-color" onClick={() => {this.closeModal(); this.sendRating()}}>Done</Button>
           </Modal.Actions>
           </Modal>
 
