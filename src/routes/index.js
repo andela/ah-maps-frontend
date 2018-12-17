@@ -7,7 +7,6 @@ import PageNotFound from '../components/PageNotFound';
 import Article from '../views/Article';
 import ArticlesList from '../views/ArticleList';
 import ArticleView from '../views/Article/Articleview';
-
 /**
  * Routing details
  * path: string: url path
@@ -43,13 +42,13 @@ const routes = [
   },
   {
     path: '/article',
-    name: 'Article',
+    name: 'Create Article',
     protected: true,
     component: Article,
   },
   {
     path: '/articles',
-    name: 'Articles',
+    name: 'List Articles',
     component: ArticlesList,
   },
   {

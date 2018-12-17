@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VideoBlockConfig } from 'Dante2/package/lib/components/blocks/video';
-import { EmbedBlockConfig } from 'Dante2/package/lib/components/blocks/embed';
-import { PlaceholderBlockConfig } from 'Dante2/package/lib/components/blocks/placeholder';
-import { Container, Grid, Form } from 'semantic-ui-react';
-import Dante from 'Dante2';
-import ImageUploader from 'react-images-upload';
-import Message from '../Signup/Message';
+import { Container, Grid } from 'semantic-ui-react';
+
+import ServerMessage from './ServerMessage';
+import ArticleTitle from './ArticleTitle';
+import ArticleImage from './ArticleImage';
+import ArticleEditor from './ArticleEditor';
 import './styles.sass';
 
 
 const Article = ({ ...props }) => {
   const {
-    onChange, title, errors,
+    errors,
     handleSubmit, onEditorChange,
     onImageChange, articles, loading, readOnly,
   } = props;
@@ -22,53 +21,17 @@ const Article = ({ ...props }) => {
       <Grid className={loading ? 'ui loading form' : ''} columns={2} divided="vertically">
         <Grid.Row>
           <Grid.Column width={12}>
-            {articles.success
-             && Object.keys(articles.errors).length > 0
-              && <Message errors={articles.errors} status={articles.status} />
-            }
-            {!articles.success
-                && Object.keys(articles.errors).length > 0
-                  && <Message errors={articles.errors} status={articles.status} />
-                }
-            <Form.Field>
-              <input name="title" value={title} onChange={onChange} type="text" placeholder="Title" className="post__title" />
-              {errors.title
-              && <div className="ui pointing red basic label">{errors.title}</div>
-              }
-            </Form.Field>
-            <Form.Field>
-              <Dante
-                data_storage={{
-                  interval: 1000,
-                  url: '#/',
-                  method: 'POST',
-                  save_handler: onEditorChange,
-                }}
-                content={null}
-                body_placeholder="Write your story here"
-                read_only={readOnly}
-                widgets={[
-                  VideoBlockConfig(),
-                  EmbedBlockConfig(),
-                  PlaceholderBlockConfig(),
-                ]}
-              />
-              {errors.body
-              && <div className="ui pointing red basic label">{errors.body}</div>}
-            </Form.Field>
-
+            <ServerMessage articles={articles} />
+            <ArticleTitle {...props} />
+            <ArticleEditor
+              errors={errors}
+              onEditorChange={onEditorChange}
+              readOnly={readOnly}
+            />
           </Grid.Column>
 
           <Grid.Column width={4}>
-            <ImageUploader
-              withIcon
-              buttonText="Choose images"
-              onChange={onImageChange}
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
-              maxFileSize={5242880}
-              withPreview
-              singleImage
-            />
+            <ArticleImage onImageChange={onImageChange} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

@@ -30,7 +30,7 @@ const LoginForm = ({ ...props }) => {
         <SocialAuth {...rest} />
         <p>
 Don&apos;t have an account?
-          <Link to="signup"> Sign Up</Link>
+          <Link to="signup"> Sign Up</Link>          
         </p>
       </form>
     </div>

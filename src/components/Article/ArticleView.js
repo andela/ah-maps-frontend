@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 import {
   Grid, Container, Image, Button,
 } from 'semantic-ui-react';
+import Dante from 'Dante2';
 import { ARTICLE_IMAGE } from '../../constants';
 import './articleView.sass';
 import UserCard from '../Card/UserCard';
-import Editor from './Editor';
 import { isOwner } from '../../utils/permissions';
 import LikeButton from '../../containers/LikeButtons';
+import '../../assets/styles/scss/index.sass';
 
 
 const ArticleView = ({ ...props }) => {
-  const { article, redirect } = props;
+  const {
+    article, redirect,
+    deleteArticle, confirmDelete,
+    show, loading,
+  } = props;
   const {
     title, image, body, author,
   } = article;
   return (
     <Container>
-      <Grid>
+      <Grid className={loading ? 'ui loading form' : ''}>
         <Grid.Row columns={1}>
           <Grid.Column>
             <div className="article" role="presentation">
@@ -27,6 +32,8 @@ const ArticleView = ({ ...props }) => {
                   {title}
                   &nbsp;&nbsp;
                   {isOwner(author.username) && <Button onClick={redirect} content="Edit" className="ui large teal button float-right" />}
+                  {isOwner(author.username) && show && <Button onClick={deleteArticle} color="red" content="Confirm Delete" className="ui large danger button float-right" />}
+                  {isOwner(author.username) && !show && <Button onClick={confirmDelete} color="orange" content="Delete" className="ui large danger button float-right" />}
                 </h1>
                 <UserCard {...article} readingTime={article.reading_time} />
               </div>
@@ -44,8 +51,25 @@ const ArticleView = ({ ...props }) => {
 
         <Grid.Row>
           <Grid.Column>
-            <Editor body={body} />
-            <LikeButton slug={article.slug} />
+            {body ? (
+              <div>
+                <Dante
+                  content={{
+                    blocks: JSON.parse(body),
+                    entityMap: {},
+                  }}
+                  read_only
+                />
+              </div>
+            ) : <div />}
+            <hr className="hr-line" />
+            <div className="ui grid top padded">
+              <div className="four column row">
+                <div className="right floated column">
+                  <LikeButton slug={article.slug} />
+                </div>
+              </div>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -62,13 +86,15 @@ ArticleView.propTypes = {
   article: PropTypes.shape({}).isRequired,
   readingTime: PropTypes.string,
   redirect: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 ArticleView.defaultProps = {
   title: '',
   body: '',
   image: ARTICLE_IMAGE,
-  author: { followers: [] },
+  author: { followers: [], username: '' },
   readingTime: '',
 };
 export default ArticleView;

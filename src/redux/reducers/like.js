@@ -1,4 +1,4 @@
-import { LIKE_SUCCESS, DISLIKE_SUCCESS, GET_LIKES} from '../../constants';
+import { LIKE_SUCCESS, DISLIKE_SUCCESS, GET_LIKES } from '../../constants';
 
 export const initialState = {
   liked: false,

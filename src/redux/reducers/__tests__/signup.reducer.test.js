@@ -3,20 +3,22 @@ import {
   SIGNUP_ERROR, SIGNUP_SUCCESS,
 } from '../../../constants';
 
+const signUpState = initialState;
+
 describe('Signup reducers', () => {
-  it('should provide the initial state', () => {
-    expect(signup(undefined, {})).toEqual(initialState);
+  it('should provide the signup initial state', () => {
+    expect(signup(undefined, {})).toEqual(signUpState);
   });
 
   it('should add signup to the state', () => {
-    expect(signup(initialState, {})).toEqual(initialState);
+    expect(signup(signUpState, {})).toEqual(signUpState);
   });
 
   it('should set signup success', () => {
-    expect(signup(initialState, { type: SIGNUP_SUCCESS }).success).toEqual(true);
+    expect(signup(signUpState, { type: SIGNUP_SUCCESS }).success).toEqual(true);
   });
 
   it('should set signup error', () => {
-    expect(signup(initialState, { type: SIGNUP_ERROR, payload: {} }).success).toEqual(false);
+    expect(signup(signUpState, { type: SIGNUP_ERROR, payload: {} }).success).toEqual(false);
   });
 });

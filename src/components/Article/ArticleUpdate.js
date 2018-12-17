@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Container, Grid } from 'semantic-ui-react';
 import { VideoBlockConfig } from 'Dante2/package/lib/components/blocks/video';
 import { EmbedBlockConfig } from 'Dante2/package/lib/components/blocks/embed';
 import { PlaceholderBlockConfig } from 'Dante2/package/lib/components/blocks/placeholder';
-import { Container, Grid, Form } from 'semantic-ui-react';
+
 import Dante from 'Dante2';
-import ImageUploader from 'react-images-upload';
-import Message from '../Signup/Message';
+
+import ServerMessage from './ServerMessage';
+import ArticleTitle from './ArticleTitle';
+import ArticleImage from './ArticleImage';
+
 import './styles.sass';
 
 
 const Article = ({ ...props }) => {
   const {
-    onChange, title, body, errors,
+    errors, title, body,
     handleSubmit, onEditorChange,
     onImageChange, articles, loading, readOnly,
   } = props;
@@ -22,22 +26,9 @@ const Article = ({ ...props }) => {
       <Grid className={loading ? 'ui loading form' : ''} columns={2} divided="vertically">
         <Grid.Row>
           <Grid.Column width={12}>
-            {articles.success
-             && Object.keys(articles.errors).length > 0
-              && <Message errors={articles.errors} status={articles.status} />
-            }
-            {!articles.success
-                && Object.keys(articles.errors).length > 0
-                  && <Message errors={articles.errors} status={articles.status} />
-                }
-            <Form.Field>
-              <input name="title" value={title} onChange={onChange} type="text" placeholder="Title" className="post__title" />
-              {errors.title
-              && <div className="ui pointing red basic label">{errors.title}</div>
-              }
-            </Form.Field>
-            <Form.Field>
-              {title !== ''
+            <ServerMessage articles={articles} />
+            <ArticleTitle {...props} />
+            {title !== ''
               && (
               <Dante
                 data_storage={{
@@ -55,24 +46,13 @@ const Article = ({ ...props }) => {
                   PlaceholderBlockConfig(),
                 ]}
               />
-              )
-            }
-              {errors.body
-              && <div className="ui pointing red basic label">{errors.body}</div>}
-            </Form.Field>
-
+              )}
+            {errors.body
+        && <div className="ui pointing red basic label">{errors.body}</div>}
           </Grid.Column>
 
           <Grid.Column width={4}>
-            <ImageUploader
-              withIcon
-              buttonText="Update article image"
-              onChange={onImageChange}
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
-              maxFileSize={5242880}
-              withPreview
-              singleImage
-            />
+            <ArticleImage onImageChange={onImageChange} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>

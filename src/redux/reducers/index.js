@@ -3,9 +3,9 @@ import articles from './articles';
 import signup from './signup';
 import login from './login';
 import resetpassword from './resetpassword';
-import like from './like';
+import rating from './rating';
 import articlelist from './articlesList';
-
+import like from './like';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -18,7 +18,8 @@ const allReducers = combineReducers({
   signup,
   login,
   resetpassword,
-  like,
+  rating,
+  like
 });
 
 export default allReducers;

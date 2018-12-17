@@ -3,11 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Article from '../../components/Article';
 import ArticleUpdate from '../../components/Article/ArticleUpdate';
-import { addArticles, addArticlesError } from '../../redux/actions';
+import { addArticles, addArticlesError, removeArticleMessage } from '../../redux/actions';
 
 import { api } from '../../utils/api';
+import { validate } from '../../utils/validation';
 
-export class index extends Component {
+export class ArticleForm extends Component {
   state ={
     title: '',
     body: [],
@@ -19,8 +20,9 @@ export class index extends Component {
   }
 
   componentDidMount() {
-    const { match: { params } } = this.props;
+    const { match: { params }, removeMessage } = this.props;
     this.setState({ slug: params.slug });
+    removeMessage();
     if (params.slug) {
       api.article.single(params.slug)
         .then((response) => {
@@ -59,36 +61,15 @@ export class index extends Component {
     this.setState({ body: blocks });
   };
 
-  validate = () => {
-    const {
-      title,
-      body,
-    } = this.state;
-    const { errors } = this.state;
-    if (title === '') errors.title = 'Title field required';
-    if (body === '') errors.body = 'Body field required';
-    if (body.length === 1 && body[0].text === '') {
-      errors.body = 'Body field required';
-    }
-    for (let i = 0; i < body.length; i += 1) {
-      if (body[i].text === '') {
-        errors.body = 'Body field required';
-      } else {
-        delete errors.body;
-      }
-    }
-
-    this.setState({ errors });
-
-    const isValid = Object.keys(errors).length === 0;
-    if (isValid) return true;
-    return false;
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.validate()) {
-      const { add, addError, history } = this.props;
+    const errors = validate({ ...this.state });
+    this.setState({ errors });
+    const isValid = Object.keys(errors).length === 0;
+    if (isValid) {
+      const {
+        add, addError, removeMessage, history,
+      } = this.props;
       const {
         title, body, imageFile, slug,
       } = this.state;
@@ -98,13 +79,17 @@ export class index extends Component {
       formData.append('title', title);
       formData.append('body', JSON.stringify(body));
       formData.append('image_file', imageFile);
+
       if (slug) {
         api.article.update(slug, formData)
           .then((response) => {
             this.setState({ loading: false });
             const res = response.data;
             add(res);
-            history.push(`/article/${res.slug}`);
+            setTimeout(() => {
+              removeMessage();
+              history.push(`/article/${res.slug}`);
+            }, 3000);
           })
           .catch((error) => {
             let issue = {};
@@ -118,8 +103,12 @@ export class index extends Component {
             }
             issue = issue === 'undefined' ? {} : issue;
             addError(issue);
+            setTimeout(() => {
+              removeMessage();
+            }, 2000);
           });
       } else {
+        // TODO: move api request to actions
         api.article.create(formData)
           .then((response) => {
             this.setState({ loading: false });
@@ -177,14 +166,15 @@ export class index extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   articles: state.articles,
 });
 
 const matchDispatchToProps = dispatch => bindActionCreators({
   add: addArticles,
   addError: addArticlesError,
+  removeMessage: removeArticleMessage,
 }, dispatch);
 
 
-export default connect(mapStateToProps, matchDispatchToProps)(index);
+export default connect(mapStateToProps, matchDispatchToProps)(ArticleForm);

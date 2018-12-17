@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { isLoggedIn } from '../../utils/auth';
 import {
   liker, disliker, getLikes,
 } from '../../redux/actions';
+import LikeBtn from '../../components/LikeButtons';
 
 
 class LikeButton extends Component {
@@ -37,29 +37,7 @@ class LikeButton extends Component {
   }
 
   render() {
-    const {
-      liked, disliked, likeCount, dislikeCount
-    } = this.props;
-    const LikeLabel = liked ? 'Unlike' : 'Like';
-    const DislikeLabel = disliked ? 'Undislike' : 'Dislike';
-    return (
-      <div className="customContainer">
-        <div className={isLoggedIn() ? 'ui red button' : 'ui disabled red button'} id="like-btn" onClick={this.handleLikeClick}>
-          <i className="heart icon" />
-          { LikeLabel }
-        </div>
-        <a className="ui basic red left pointing label">
-          { likeCount }
-        </a>
-        <div className={isLoggedIn() ? 'ui red button' : 'ui disabled red button'} id="dislike-btn" onClick={this.handleDislikeClick}>
-          <i className="thumbs down icon" />
-          { DislikeLabel }
-        </div>
-        <a className="ui basic red left pointing label">
-          { dislikeCount }
-        </a>
-      </div>
-    );
+    return (<LikeBtn {...this.props} handleLike={this.handleLikeClick} handleDislike={this.handleDislikeClick} />);
   }
 }
 LikeButton.propTypes = {

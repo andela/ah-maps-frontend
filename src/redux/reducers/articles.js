@@ -16,7 +16,7 @@ export default (state = initialState, { type, payload }) => {
         success: true,
         article: payload,
         status: 'success',
-        errors: { message: 'Article created successfully' },
+        errors: { message: 'Article submitted successfully' },
       };
     case REMOVE_ARTICLE_MESSAGE:
       return {
