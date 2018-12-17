@@ -21,13 +21,13 @@ class Rating extends Component {
     };
   }
 
-  show = size => () => { 
+  showModal = size => () => { 
     const { slug, getRating } = this.props;
     this.setState({ size, open: true })
     getRating({ slug: slug });
   };
 
-  close = () => {
+  closeModal = () => {
     const {refresh} = this.props;
     refresh();
     this.setState({ open: false })
@@ -43,7 +43,7 @@ class Rating extends Component {
     const { open, size } = this.state;
     return (
       <div className="rating">
-        <Modal size={size} open={open} onClose={this.close}>
+        <Modal size={size} open={open} onClose={this.closeModal}>
           <Modal.Header>{title} </Modal.Header>
           <Modal.Content>
 
@@ -66,7 +66,7 @@ class Rating extends Component {
            
           </Modal.Content>
           <Modal.Actions>
-            <Button className="theme-color" onClick={this.close}>Done</Button>
+            <Button className="theme-color" onClick={this.closeModal}>Done</Button>
           </Modal.Actions>
           </Modal>
 
@@ -77,7 +77,7 @@ class Rating extends Component {
           starRatedColor="gold"
         />
 
-        <Button className={isLoggedIn() && !isOwner(username) ? 'theme-color' : 'theme-color disabled'} onClick={this.show('mini')}>Rate</Button>
+        <Button className={isLoggedIn() && !isOwner(username) ? 'theme-color' : 'theme-color disabled'} onClick={this.showModal('mini')}>Rate</Button>
               
       </div>
 
