@@ -3,6 +3,7 @@ import articles from './articles';
 import signup from './signup';
 import login from './login';
 import resetpassword from './resetpassword';
+import rating from './rating';
 import articlelist from './articlesList';
 
 /*
@@ -16,7 +17,7 @@ const allReducers = combineReducers({
   signup,
   login,
   resetpassword,
-
+  rating,
 });
 
 export default allReducers;

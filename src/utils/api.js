@@ -26,6 +26,15 @@ export const api = {
     resetPassword: data => client.post('user/resetpassword', data),
     update: data => client.put(`user/update/${data.token}`, { password: data.password }),
     social: data => client.post('users/social_auth/', data),
+    rate: data => client.post(`rate/${data.slug}/`, { your_rating: data.rating }),
+    fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
+  },
+  article: {
+    list: () => client.get('article/'),
+    single: slug => client.get(`article/detail/${slug}/`),
+    update: (slug, data) => client.put(`article/update/${slug}/`, data),
+    delete: slug => client.delete(`article/delete/${slug}/`),
+    create: data => client.post('article/create', data),
   },
   article: {
     list: () => client.get('article/'),

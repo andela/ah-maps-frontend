@@ -1,0 +1,4 @@
+export const CHANGE_RATING = 'CHANGE_RATING';
+export const CHANGE_USER_RATING = 'CHANGE_USER_RATING';
+
+export default CHANGE_RATING;
