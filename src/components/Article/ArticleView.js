@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid, Container, Image, Button,
+  Grid, Container, Image, Button, Icon,
 } from 'semantic-ui-react';
 import Dante from 'Dante2';
 import { ARTICLE_IMAGE } from '../../constants';
@@ -20,23 +20,36 @@ const ArticleView = ({ ...props }) => {
   } = article;
   return (
     <Container>
-      <Grid className={loading ? 'ui loading form' : ''}>
-        <Grid.Row columns={1}>
+      <Grid className={loading ? 'ui loading form article-container ' : 'article-container '}>
+        <Grid.Row>
+          <div className="article__actions w-100">
+            {isOwner(author.username) && <Icon size="big" onClick={redirect} className="float-right" name="edit outline" title="Edit" />}
+            &nbsp;&nbsp;
+            {isOwner(author.username) && show
+            && (
+            <Button className="float-right" color="orange">
+              <Icon onClick={deleteArticle} inverted name="trash alternate outline" title="Confirm Delete" />
+              Confirm Delete
+            </Button>
+            )
+            }
+            &nbsp;&nbsp;
+            {isOwner(author.username) && !show && <Icon size="big" onClick={confirmDelete} className="float-right" color="orange" name="trash alternate outline" content="confirm" title="Delete" />}
+          </div>
+        </Grid.Row>
+        <Grid.Row columns={image ? 2 : 1}>
           <Grid.Column>
             <div className="article" role="presentation">
               <div className="article__view__content">
                 <h1 className="article__view__header">
                   {title}
-                  &nbsp;&nbsp;
-                  {isOwner(author.username) && <Button onClick={redirect} content="Edit" className="ui large teal button float-right" />}
-                  {isOwner(author.username) && show && <Button onClick={deleteArticle} color="red" content="Confirm Delete" className="ui large danger button float-right" />}
-                  {isOwner(author.username) && !show && <Button onClick={confirmDelete} color="orange" content="Delete" className="ui large danger button float-right" />}
                 </h1>
                 <UserCard {...article} readingTime={article.reading_time} />
               </div>
             </div>
 
           </Grid.Column>
+
           {image
           && (
           <Grid.Column className="featured-image">
@@ -47,17 +60,15 @@ const ArticleView = ({ ...props }) => {
         </Grid.Row>
 
         <Grid.Row>
-          <Grid.Column>
+          <Grid.Column className="article-body">
             {body ? (
-              <div>
-                <Dante
-                  content={{
-                    blocks: JSON.parse(body),
-                    entityMap: {},
-                  }}
-                  read_only
-                />
-              </div>
+              <Dante
+                content={{
+                  blocks: JSON.parse(body),
+                  entityMap: {},
+                }}
+                read_only
+              />
             ) : <div />}
           </Grid.Column>
         </Grid.Row>

@@ -36,11 +36,4 @@ export const api = {
     delete: slug => client.delete(`article/delete/${slug}/`),
     create: data => client.post('article/create', data),
   },
-  article: {
-    list: () => client.get('article/'),
-    single: slug => client.get(`article/detail/${slug}/`),
-    update: (slug, data) => client.put(`article/update/${slug}/`, data),
-    delete: slug => client.delete(`article/delete/${slug}/`),
-    create: data => client.post('article/create', data),
-  },
 };
