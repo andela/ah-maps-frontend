@@ -4,7 +4,7 @@ import {
   UPDATE_IMAGE,
 } from '../../constants';
 
-const initialState = {
+export const initialState = {
   profile: {},
   image: null,
   bio: null,

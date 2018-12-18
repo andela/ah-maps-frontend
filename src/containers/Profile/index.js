@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Bio } from '../../components/Profile/Bio';
 import { getToken } from '../../utils/auth';
 import {
-  getProfile,
+  getProfile, profileFetched,
 } from '../../redux/actions/profile';
 
 export class Profile extends Component {
@@ -12,8 +12,12 @@ export class Profile extends Component {
     const user = getToken();
 
     const { user: { username } } = user;
-    const { dispatch } = this.props;
-    dispatch(getProfile(username));
+    const { fetchProfile, fetchedProfile } = this.props;
+    fetchProfile(username)
+      .then((response) => {
+        fetchedProfile(response.data);
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -39,4 +43,9 @@ const mapStateToProps = state => ({
   profile: state.profileReducer.profile,
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = {
+  fetchProfile: getProfile,
+  fetchedProfile: profileFetched,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

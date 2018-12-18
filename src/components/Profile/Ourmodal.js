@@ -63,7 +63,6 @@ export class Edit extends Component {
         editprofile, profile,
       } = this.props;
       const { bio, username, imageFile } = this.state;
-      console.warn(profile);
 
       const formData = new FormData();
       if (imageFile) formData.append('image_file', imageFile);
@@ -92,7 +91,7 @@ export class Edit extends Component {
       return (
         <div>
 
-<Button onClick={() => this.show()}>Edit Profile</Button>
+          <Button onClick={() => this.show()}>Edit Profile</Button>
           <Modal open={open} onClose={this.close}>
             <Modal.Content image>
               <Avatar wrapped size="medium" source={profile.image || avatar} />
@@ -100,7 +99,7 @@ export class Edit extends Component {
                 &#9998;
               </span>
               {imageUpload}
-              <Modal.Description>
+              <Modal.Description id="open-modal">
                 <Header>Update Profile:</Header>
                 <Form id="update-form" onSubmit={this.handleSubmit}>
                   <Form.Group>
@@ -110,7 +109,7 @@ export class Edit extends Component {
                     </Form.Field>
                   </Form.Group>
                   <Form.TextArea label="bio" name="bio" id="bio" value={bio} rows={4} placeholder="Tell us about yourself..." onChange={this.handleChange} />
-                  <Form.Button content="Update"/>
+                  <Form.Button id="submit-btn" content="Update" />
                 </Form>
               </Modal.Description>
             </Modal.Content>

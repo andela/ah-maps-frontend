@@ -22,12 +22,7 @@ export const updateImage = payload => ({
 });
 
 
-export const getProfile = username => dispatch => api.user.profile(username)
-  .then((response) => {
-    console.log("fetching profile.......")
-    dispatch(profileFetched(response.data));
-  })
-  .catch(error => console.log(error));
+export const getProfile = username => dispatch => api.user.profile(username);
 
 export const saveProfile = (username, data) => dispatch => api.user.editProfile(username, data)
   .then((response) => {
