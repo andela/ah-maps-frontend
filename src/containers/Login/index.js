@@ -40,10 +40,7 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {
-      signin, 
-      signInError, signInSuccess, clearMessage, history,
-    } = this.props;
+    const { signin, signInSuccess, signInError, clearMessage, history } = this.props;
     removeToken();
     signin({ ...this.state }).then((response) => {
       signInSuccess(response.data.user);

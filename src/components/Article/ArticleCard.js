@@ -25,11 +25,8 @@ const ArticleCard = ({ ...props }) => {
         <div className="description">
           {author.username}
         </div>
-        
       </div>
-      <Rating slug={slug} title={title} rating={rating || 0} refresh={refresh} username={author.username}/>
-
-
+      <Rating slug={slug} title={title} rating={rating || 0} refresh={refresh} username={author.username} />
       <div className="extra content">
         <span className="right floated">
           {readingTime}
