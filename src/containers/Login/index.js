@@ -74,6 +74,7 @@ class Login extends Component {
         icon: 'mail outline ',
         placeholder: 'Enter email address',
         onChange: this.onChange,
+        required: 'required',
       },
       {
         name: 'password',
@@ -83,6 +84,7 @@ class Login extends Component {
         icon: 'lock',
         placeholder: 'Enter password',
         onChange: this.onChange,
+        required: 'required',
       },
     ];
     return (
