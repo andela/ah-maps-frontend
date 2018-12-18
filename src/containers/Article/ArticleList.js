@@ -52,7 +52,7 @@ export class ArticleList extends Component {
                   readingTime={article.reading_time}
                   key={article.slug}
                   rating={article.rating}
-                  refresh={this.refreshArticles} 
+                  refresh={this.refreshArticles}
                 />
 
               ))

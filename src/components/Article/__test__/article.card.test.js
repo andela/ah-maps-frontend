@@ -12,6 +12,7 @@ describe('<ArticleCard />', () => {
         readingTime=""
         slug=""
         history={{}}
+        refresh={() => {}}
       />,
     );
   });

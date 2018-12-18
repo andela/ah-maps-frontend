@@ -40,10 +40,7 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const {
-      signin, 
-      signInError, signInSuccess, clearMessage, history,
-    } = this.props;
+    const { signin, signInSuccess, signInError, clearMessage, history } = this.props;
     removeToken();
     signin({ ...this.state }).then((response) => {
       signInSuccess(response.data.user);
@@ -77,6 +74,7 @@ class Login extends Component {
         icon: 'mail outline ',
         placeholder: 'Enter email address',
         onChange: this.onChange,
+        required: 'required',
       },
       {
         name: 'password',
@@ -86,6 +84,7 @@ class Login extends Component {
         icon: 'lock',
         placeholder: 'Enter password',
         onChange: this.onChange,
+        required: 'required',
       },
     ];
     return (

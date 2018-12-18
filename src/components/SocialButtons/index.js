@@ -20,7 +20,7 @@ export const responseHandler = (response) => {
     provider,
   }).then((res) => {
     setToken(res.data);
-    // TODO: Redirect to home page.
+    window.location.replace('/');
   });
 };
 

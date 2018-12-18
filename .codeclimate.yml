@@ -31,5 +31,5 @@ checks:
     config:
       threshold: 250
 exclude_patterns:
-  - "**/tests/" 
+  - "**/tests/"
   - "**/*.test.*"

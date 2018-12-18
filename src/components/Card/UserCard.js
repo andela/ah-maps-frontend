@@ -12,22 +12,20 @@ const Card = ({ ...props }) => {
     <Container>
       <Grid columns={2}>
         <Grid.Row>
-          <Grid.Column>
-            <div className="user__avatar float-left">
-              <Image circular src={author.image || PROFILE_AVATAR} />
+          <div className="user__avatar float-left">
+            <Image circular src={author.image || PROFILE_AVATAR} />
+          </div>
+          <div className="float-left user__details">
+            <div>
+              {author.username}
             </div>
-            <div className="float-left user__details">
-              <div>
-                {author.username}
-              </div>
-              <div className="text-muted">
-                <span>{date}</span>
+            <div className="text-muted">
+              <span>{date}</span>
 &nbsp;&nbsp;
-                <span>{readingTime}</span>
-              </div>
-
+              <span>{readingTime}</span>
             </div>
-          </Grid.Column>
+
+          </div>
         </Grid.Row>
       </Grid>
     </Container>
