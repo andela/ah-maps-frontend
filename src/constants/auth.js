@@ -1,4 +1,4 @@
-export const TOKEN_KEY = 'jsonwebToken';
+export const TOKEN_KEY = 'mapwebToken';
 export const USER_TOKEN = {
   user: {
     email: 'map@gmail.com',
