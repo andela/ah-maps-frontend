@@ -33,7 +33,7 @@ export const api = {
     fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
   },
   article: {
-    list: () => client.get('article/'),
+    list: params => client.get(`article/?${params}`),
     single: slug => client.get(`article/detail/${slug}/`),
     update: (slug, data) => client.put(`article/update/${slug}/`, data),
     delete: slug => client.delete(`article/delete/${slug}/`),
