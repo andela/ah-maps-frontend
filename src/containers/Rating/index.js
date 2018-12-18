@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import StarRatings from 'react-star-ratings';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'semantic-ui-react';
+import {
+  Button, Modal, Dimmer, Loader, Segment,
+} from 'semantic-ui-react';
 import {
   addRating, fetchRating,
 } from '../../redux/actions';
 import './style.sass';
 import { isLoggedIn } from '../../utils/auth';
-import { isOwner} from "../../utils/permissions";
-import { Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { isOwner } from '../../utils/permissions';
 
 
 class Rating extends Component {
@@ -22,60 +23,64 @@ class Rating extends Component {
     };
   }
 
-  showModal = size => { 
+  showModal = (size) => {
     const { slug, getRating, userRating } = this.props;
-    this.setState({ size, open: true })
-    getRating({ slug: slug });
-    this.setState({ newRating:  userRating});
+    this.setState({ size, open: true });
+    getRating({ slug });
+    this.setState({ newRating: userRating });
   };
 
   closeModal = () => {
-    const {refresh} = this.props;
+    const { refresh } = this.props;
     refresh();
-    this.setState({ open: false })
+    this.setState({ open: false });
   };
 
   changeRating = (newRating) => {
-    this.setState({ newRating: newRating })
+    this.setState({ newRating });
   }
 
   sendRating = () => {
     const { rate, slug } = this.props;
-    const { newRating} = this.state;
-    rate({ rating: newRating, slug: slug });
-    
+    const { newRating } = this.state;
+    rate({ rating: newRating, slug });
   }
 
   render() {
-    const { rating, title, username, loading } = this.props;
+    const {
+      rating, title, username, loading,
+    } = this.props;
     const { open, size, newRating } = this.state;
     return (
       <div className="rating">
         <Modal size={size} open={open} onClose={this.closeModal}>
-          <Modal.Header>{title} </Modal.Header>
+          <Modal.Header>
+            {title}
+            {' '}
+          </Modal.Header>
           <Modal.Content>
 
-          <Segment className="loading-rating">
-                <Dimmer className={loading ? "active " : null }>
-                    <Loader size='tiny'>your previous rating is....</Loader>
-                </Dimmer>
+            <Segment className="loading-rating">
+              <Dimmer className={loading ? 'active ' : null}>
+                <Loader size="tiny">your previous rating is....</Loader>
+              </Dimmer>
 
-                <StarRatings
-                      rating={newRating}
-                      starRatedColor="gold"
-                      changeRating={this.changeRating}
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="20px"
-                      starSpacing="3px"
-                    />
+              <StarRatings
+                rating={newRating}
+                starRatedColor="gold"
+                changeRating={this.changeRating}
+                numberOfStars={5}
+                name="rating"
+                starDimension="20px"
+                starSpacing="3px"
+              />
             </Segment>
-           
-        </Modal.Content>
+
+          </Modal.Content>
           <Modal.Actions>
-            <Button className="theme-color done" onClick={() => {this.closeModal(); this.sendRating()}}>Done</Button>
+            <Button className="theme-color done" onClick={() => { this.closeModal(); this.sendRating(); }}>Done</Button>
           </Modal.Actions>
-          </Modal>
+        </Modal>
 
         <StarRatings
           rating={rating}
@@ -84,8 +89,8 @@ class Rating extends Component {
           starRatedColor="gold"
         />
 
-    { isLoggedIn() && !isOwner(username) && <Button className='theme-color' onClick={this.showModal('mini')}>Rate</Button> }
-              
+        { isLoggedIn() && !isOwner(username) && <Button className="theme-color" onClick={() => this.showModal('mini')}>Rate</Button> }
+
       </div>
 
     );
@@ -95,8 +100,13 @@ class Rating extends Component {
 Rating.propTypes = {
   rate: PropTypes.func.isRequired,
   getRating: PropTypes.func.isRequired,
-  avgRating: PropTypes.number.isRequired,
   userRating: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  slug: PropTypes.string.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
   avgRating: state.rating.average_rating,

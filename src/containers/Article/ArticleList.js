@@ -19,7 +19,7 @@ export class ArticleList extends Component {
     this.refreshArticles();
   }
 
-  refreshArticles = () =>{
+  refreshArticles = () => {
     const { addArticles, fetchArticles } = this.props;
     fetchArticles({})
       .then((response) => {
