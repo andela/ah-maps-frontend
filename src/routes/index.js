@@ -3,6 +3,7 @@ import Login from '../views/Login';
 import SignUp from '../views/SignUp';
 import ForgotPassword from '../views/ForgotPassword';
 import ResetPassword from '../views/ResetPassword';
+import Profile from '../views/Profile';
 import PageNotFound from '../components/PageNotFound';
 import Article from '../views/Article';
 import ArticlesList from '../views/ArticleList';
@@ -13,6 +14,8 @@ import ArticleView from '../views/Article/Articleview';
  * name: string: name of the path
  * protected: bool: checks if the url is protected
  */
+
+
 const routes = [
   {
     path: '/',
@@ -63,10 +66,17 @@ const routes = [
     component: Article,
   },
   {
+    path: '/profile',
+    name: 'Profile',
+    protected: true,
+    component: Profile,
+  },
+  {
     path: '*',
     name: '404',
     component: PageNotFound,
   },
+
 
 ];
 
