@@ -9,6 +9,7 @@ import ResetPassword from '../ResetPassword';
 import ArticleList from '../ArticleList';
 import Article from '../Article';
 import ArticleView from '../Article/Articleview';
+import Profile from '../Profile';
 
 it('renders Landingpage component without crashing', () => {
   shallow(<Landingpage />);
@@ -39,4 +40,8 @@ it('renders ForgotPassword component without crashing', () => {
 
 it('renders ResetPassword component without crashing', () => {
   shallow(<ResetPassword />);
+});
+
+it('renders Profile component without crashing', () => {
+  shallow(<Profile />);
 });

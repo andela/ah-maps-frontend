@@ -31,6 +31,8 @@ export const api = {
     getArticle: data => client.get(`article/update/${data.slug}/`),
     rate: data => client.post(`rate/${data.slug}/`, { your_rating: data.rating }),
     fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
+    profile: username => client.get(`profile/${username}/`, { user: username }),
+    editProfile: (username, data) => client.put(`/profile/update/${username}/`, data),
   },
   article: {
     list: () => client.get('article/'),

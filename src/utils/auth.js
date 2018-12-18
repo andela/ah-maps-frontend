@@ -9,6 +9,7 @@ export const setToken = (token, key = TOKEN_KEY) => {
   localStorage.setItem(key, JSON.stringify(token));
 };
 
+
 /**
  * Get token from localstorage
  * @param {!string} key token object key
@@ -30,3 +31,4 @@ export const isLoggedIn = () => {
     return !!user.user.token;
   } catch (error) { return error === false; }
 };
+export default setToken;
