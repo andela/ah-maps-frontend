@@ -41,4 +41,13 @@ export const api = {
     delete: slug => client.delete(`article/delete/${slug}/`),
     create: data => client.post('article/create', data),
   },
+  comment: {
+    create: (slug, data) => client.post(`articles/comment/${slug}/comment/`, data),
+    list: slug => client.get(`articles/comment/${slug}/`),
+    edit: (id, data) => client.put(`articles/comment/update/${id}/`, data),
+    delete: (id) => { console.log('deleting.......'); client.delete(`articles/comment/delete/${id}/`); },
+    createthread: (slug, id, data) => client.post(`articles/comment/${slug}/${id}/`, data),
+    editThread: (slug, id, data) => client.put(`articles/comment/${slug}/${id}/`, data),
+
+  },
 };

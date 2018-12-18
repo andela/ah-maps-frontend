@@ -1,3 +1,4 @@
+
 version: "2"
 checks:
   argument-count:
@@ -17,7 +18,7 @@ checks:
       threshold: 20
   method-lines:
     config:
-      threshold: 70
+      threshold: 120
   nested-control-flow:
     config:
       threshold: 4

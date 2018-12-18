@@ -7,6 +7,8 @@ import rating from './rating';
 import articlelist from './articlesList';
 import profileReducer from './profile';
 import like from './like';
+import comments from './comments';
+import commentList from './commentsList';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -22,6 +24,8 @@ const allReducers = combineReducers({
   rating,
   profileReducer,
   like,
+  comments,
+  commentList,
 });
 
 export default allReducers;
