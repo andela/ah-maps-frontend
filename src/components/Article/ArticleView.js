@@ -8,6 +8,9 @@ import { ARTICLE_IMAGE } from '../../constants';
 import './articleView.sass';
 import UserCard from '../Card/UserCard';
 import { isOwner } from '../../utils/permissions';
+import LikeButton from '../../containers/LikeButtons';
+import '../../assets/styles/scss/index.sass';
+
 
 const ArticleView = ({ ...props }) => {
   const {
@@ -70,6 +73,14 @@ const ArticleView = ({ ...props }) => {
                 read_only
               />
             ) : <div />}
+            <hr className="hr-line" />
+            <div className="ui grid top padded">
+              <div className="four column row">
+                <div className="right floated column">
+                  <LikeButton slug={article.slug} />
+                </div>
+              </div>
+            </div>
           </Grid.Column>
         </Grid.Row>
       </Grid>

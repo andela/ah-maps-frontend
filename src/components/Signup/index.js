@@ -4,7 +4,6 @@ import Input from '../elements/Input';
 import { SocialAuth } from '../SocialButtons';
 import Message from './Message';
 
-
 const SignupForm = ({ ...props }) => {
   const {
     signup, inputs, handleSubmit, loading, ...rest
