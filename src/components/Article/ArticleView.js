@@ -9,14 +9,14 @@ import './articleView.sass';
 import UserCard from '../Card/UserCard';
 import { isOwner } from '../../utils/permissions';
 import LikeButton from '../../containers/LikeButtons';
+import ShareButtons from '../SocialSharing';
 import '../../assets/styles/scss/index.sass';
 
 
 const ArticleView = ({ ...props }) => {
   const {
-    article, redirect,
-    deleteArticle, confirmDelete,
-    show, loading,
+    article, redirect, deleteArticle,
+    confirmDelete, show, loading,
   } = props;
   const {
     title, image, body, author,
@@ -34,8 +34,7 @@ const ArticleView = ({ ...props }) => {
               <Icon onClick={deleteArticle} inverted name="trash alternate outline" title="Confirm Delete" />
               Confirm Delete
             </Button>
-            )
-            }
+            )}
             &nbsp;&nbsp;
             {isOwner(author.username) && !show && <Icon size="big" onClick={confirmDelete} className="float-right" color="orange" name="trash alternate outline" content="confirm" title="Delete" />}
           </div>
@@ -50,18 +49,14 @@ const ArticleView = ({ ...props }) => {
                 <UserCard {...article} readingTime={article.reading_time} />
               </div>
             </div>
-
           </Grid.Column>
-
           {image
           && (
           <Grid.Column className="featured-image">
             <Image src={image || ARTICLE_IMAGE} />
           </Grid.Column>
-          )
-          }
+          )}
         </Grid.Row>
-
         <Grid.Row>
           <Grid.Column className="article-body">
             {body ? (
@@ -82,10 +77,12 @@ const ArticleView = ({ ...props }) => {
               </div>
             </div>
           </Grid.Column>
+          <div>
+            <ShareButtons title={title} />
+          </div>
         </Grid.Row>
       </Grid>
     </Container>
-
   );
 };
 
