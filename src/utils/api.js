@@ -5,7 +5,7 @@ export const authUserHeader = () => {
   const user = getToken();
   if (isLoggedIn()) {
     return {
-      Authorization: `Bearer ${user.user.token}`,
+      Authorization: `Bearer ${user.token}`,
     };
   }
   return {};
@@ -33,6 +33,10 @@ export const api = {
     fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
     profile: username => client.get(`profile/${username}/`, { user: username }),
     editProfile: (username, data) => client.put(`/profile/update/${username}/`, data),
+    followUser: username => client.post(`profile/${username}/follow`),
+    unfollowUser: username => client.delete(`profile/${username}/follow`),
+    following: username => client.get(`profile/${username}/following`),
+    followers: username => client.get(`profile/${username}/followers`),
   },
   article: {
     list: () => client.get('article/'),
