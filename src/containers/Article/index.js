@@ -17,6 +17,7 @@ export class ArticleForm extends Component {
     loading: false,
     readOnly: false,
     slug: '',
+    tags: [],
   }
 
   componentDidMount() {
@@ -34,6 +35,9 @@ export class ArticleForm extends Component {
               entityMap: {},
             },
             image: article.image,
+            previousTags: article.tags,
+          }, () => {
+            this.turnTagsToOptions();
           });
         })
         .catch(err => console.error(err));
@@ -61,6 +65,25 @@ export class ArticleForm extends Component {
     this.setState({ body: blocks });
   };
 
+  handleTags = (newValue) => {
+    const tags = [];
+    newValue.map((value) => {
+      tags.push(value.value);
+      this.setState({ tags });
+    });
+  }
+
+  turnTagsToOptions = () => {
+    const { previousTags } = this.state;
+    const tagArray = [];
+
+    previousTags.forEach((value) => {
+      tagArray.push({ value: value, label: value, isSelectedboolean: true });
+    });
+
+    this.setState({ opts: tagArray });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const errors = validate({ ...this.state });
@@ -71,7 +94,7 @@ export class ArticleForm extends Component {
         add, addError, removeMessage, history,
       } = this.props;
       const {
-        title, body, imageFile, slug,
+        title, body, imageFile, slug, tags,
       } = this.state;
       this.setState({ loading: true });
 
@@ -79,6 +102,9 @@ export class ArticleForm extends Component {
       formData.append('title', title);
       formData.append('body', JSON.stringify(body));
       formData.append('image_file', imageFile);
+      tags.map((value) => {
+        formData.append('tags', value);
+      });
 
       if (slug) {
         api.article.update(slug, formData)
@@ -158,6 +184,7 @@ export class ArticleForm extends Component {
           handleSubmit={this.handleSubmit}
           onEditorChange={this.onEditorChange}
           onImageChange={this.onImageChange}
+          handleTags={this.handleTags}
           {...this.state}
           {...this.props}
         />

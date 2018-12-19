@@ -12,7 +12,7 @@ export const Input = ({ ...props }) => {
     <div className="field">
       <div className="ui left icon input">
         <i className={`${icon} icon`} />
-        <input {...rest} className={className} onChange={onChange} />
+        <input {...rest} className={className} onChange={onChange} required />
       </div>
       {errors
       && (

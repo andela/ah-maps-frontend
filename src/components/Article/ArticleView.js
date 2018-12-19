@@ -10,6 +10,8 @@ import UserCard from '../Card/UserCard';
 import { isOwner } from '../../utils/permissions';
 import LikeButton from '../../containers/LikeButtons';
 import '../../assets/styles/scss/index.sass';
+import TagList from '../../containers/Tag/tagList';
+
 
 
 const ArticleView = ({ ...props }) => {
@@ -18,6 +20,7 @@ const ArticleView = ({ ...props }) => {
     deleteArticle, confirmDelete,
     show, loading,
   } = props;
+
   const {
     title, image, body, author,
   } = article;
@@ -83,6 +86,13 @@ const ArticleView = ({ ...props }) => {
             </div>
           </Grid.Column>
         </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column>
+            <TagList tags={article.tags} />
+          </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Container>
 
