@@ -65,23 +65,12 @@ export class ArticleForm extends Component {
     this.setState({ body: blocks });
   };
 
-  handleTags = (newValue) => {
-    const tags = [];
-    newValue.map((value) => {
-      tags.push(value.value);
-      this.setState({ tags });
-    });
-  }
-
-  turnTagsToOptions = () => {
-    const { previousTags } = this.state;
+  postTags = (tags) => {
     const tagArray = [];
-
-    previousTags.forEach((value) => {
-      tagArray.push({ value: value, label: value, isSelectedboolean: true });
+    tags.map((tag) => {
+      tagArray.push(tag.value);
+      this.setState({ tags: tagArray });
     });
-
-    this.setState({ opts: tagArray });
   }
 
   handleSubmit = (event) => {
@@ -102,8 +91,8 @@ export class ArticleForm extends Component {
       formData.append('title', title);
       formData.append('body', JSON.stringify(body));
       formData.append('image_file', imageFile);
-      tags.map((value) => {
-        formData.append('tags', value);
+      tags.map((tag) => {
+        formData.append('tags', tag);
       });
 
       if (slug) {
@@ -184,7 +173,7 @@ export class ArticleForm extends Component {
           handleSubmit={this.handleSubmit}
           onEditorChange={this.onEditorChange}
           onImageChange={this.onImageChange}
-          handleTags={this.handleTags}
+          handleTags={this.postTags}
           {...this.state}
           {...this.props}
         />

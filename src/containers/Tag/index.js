@@ -4,7 +4,7 @@ import CreatableSelect from 'react-select/lib/Creatable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchTags, getTags } from '../../redux/actions';
+import { fetchTags } from '../../redux/actions';
 
 class tags extends Component {
   constructor(props) {

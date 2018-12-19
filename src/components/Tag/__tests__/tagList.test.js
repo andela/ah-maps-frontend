@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import TagList from '../tagList';
+import TagList from '../../../containers/Tag/tagList';
 import store from '../../../redux/store';
 
 

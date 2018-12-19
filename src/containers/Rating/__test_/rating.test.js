@@ -25,4 +25,3 @@ describe('Rating class', () => {
     expect(wrapper.find('.rating')).toHaveLength(1);
   });
 });
-
