@@ -17,6 +17,7 @@ export class ArticleForm extends Component {
     loading: false,
     readOnly: false,
     slug: '',
+    tags: [],
   }
 
   componentDidMount() {
@@ -34,6 +35,9 @@ export class ArticleForm extends Component {
               entityMap: {},
             },
             image: article.image,
+            previousTags: article.tags,
+          }, () => {
+            this.turnTagsToOptions();
           });
         })
         .catch(err => console.error(err));
@@ -61,6 +65,14 @@ export class ArticleForm extends Component {
     this.setState({ body: blocks });
   };
 
+  postTags = (tags) => {
+    const tagArray = [];
+    tags.map((tag) => {
+      tagArray.push(tag.value);
+      this.setState({ tags: tagArray });
+    });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const errors = validate({ ...this.state });
@@ -71,7 +83,7 @@ export class ArticleForm extends Component {
         add, addError, removeMessage, history,
       } = this.props;
       const {
-        title, body, imageFile, slug,
+        title, body, imageFile, slug, tags,
       } = this.state;
       this.setState({ loading: true });
 
@@ -79,6 +91,9 @@ export class ArticleForm extends Component {
       formData.append('title', title);
       formData.append('body', JSON.stringify(body));
       formData.append('image_file', imageFile);
+      tags.map((tag) => {
+        formData.append('tags', tag);
+      });
 
       if (slug) {
         api.article.update(slug, formData)
@@ -158,6 +173,7 @@ export class ArticleForm extends Component {
           handleSubmit={this.handleSubmit}
           onEditorChange={this.onEditorChange}
           onImageChange={this.onImageChange}
+          handleTags={this.postTags}
           {...this.state}
           {...this.props}
         />

@@ -8,12 +8,14 @@ import ArticleImage from './ArticleImage';
 import ArticleEditor from './ArticleEditor';
 import './styles.sass';
 
+import Tags from '../../containers/Tag';
+
 
 const Article = ({ ...props }) => {
   const {
     errors,
     handleSubmit, onEditorChange,
-    onImageChange, articles, loading, readOnly,
+    onImageChange, articles, loading, readOnly, handleTags,
   } = props;
 
   return (
@@ -34,6 +36,13 @@ const Article = ({ ...props }) => {
             <ArticleImage onImageChange={onImageChange} />
           </Grid.Column>
         </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column>
+            <Tags handleTags={handleTags} />
+          </Grid.Column>
+        </Grid.Row>
+
         <Grid.Row>
           <Grid.Column>
             <button onClick={handleSubmit} className="ui large teal button" type="submit">Publish</button>
