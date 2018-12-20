@@ -8,3 +8,4 @@ export {
 } from './articleList';
 export * from './profile';
 export * from './like';
+export * from './tag';

@@ -11,13 +11,14 @@ import { isOwner } from '../../utils/permissions';
 import LikeButton from '../../containers/LikeButtons';
 import ShareButtons from '../SocialSharing';
 import '../../assets/styles/scss/index.sass';
-
+import TagList from '../Tag';
 
 const ArticleView = ({ ...props }) => {
   const {
     article, redirect, deleteArticle,
     confirmDelete, show, loading,
   } = props;
+
   const {
     title, image, body, author,
   } = article;
@@ -81,6 +82,13 @@ const ArticleView = ({ ...props }) => {
             <ShareButtons title={title} />
           </div>
         </Grid.Row>
+
+        <Grid.Row>
+          <Grid.Column>
+            <TagList tags={article.tags} />
+          </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Container>
   );
