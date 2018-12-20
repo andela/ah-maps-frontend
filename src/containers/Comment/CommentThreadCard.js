@@ -7,6 +7,8 @@ import {
 import CommentUserCard from '../../components/Card/CommentUserCard';
 import { api } from '../../utils/api';
 import { isOwner } from '../../utils/permissions';
+import CommentEditForm from '../../components/Comment/CommentEditForm';
+
 
 export class CommentsThreadCard extends React.Component {
   state = {
@@ -67,24 +69,12 @@ export class CommentsThreadCard extends React.Component {
 
     if (editing) {
       return (
-        <div className="card comment-box">
-          <div className="content">
-            <Form>
-              <Form.Field>
-                <TextArea autoHeight placeholder="Try adding multiple lines" value={data} onChange={this.handleChange} />
-              </Form.Field>
-              <button type="submit" className="ui medium teal button" onClick={this.handleEdit}>Edit Reply</button>
-              <button
-                className="ui medium secondary button"
-                onClick={this.handleEditToggle}
-                type="button"
-              >
-            Cancel
-              </button>
-            </Form>
-          </div>
-        </div>
-      );
+        <CommentEditForm
+          data={data}
+          handleChange={this.handleChange}
+          handleEdit={this.handleEdit}
+          handleEditToggle={this.handleEditToggle}
+        />);
     }
     if (!editing) {
       const { open, size } = this.state;

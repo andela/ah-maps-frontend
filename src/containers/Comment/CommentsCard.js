@@ -1,8 +1,5 @@
 import React from 'react';
 import '../../components/Comment/styles.sass';
-import {
-  Form, TextArea, Modal, Button,
-} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -11,7 +8,9 @@ import { isOwner } from '../../utils/permissions';
 import {
   getComments, deleteComments, editComments, createThread,
 } from '../../redux/actions';
-import CommentModal from '../../components/Comment/CommentModal';
+import CommentModal from '../../components/Comment/CommentReplyModal';
+import CommentEditForm from '../../components/Comment/CommentEditForm';
+import CommentDeleteModal from '../../components/Comment/CommentDeleteModal';
 
 export class CommentsCard extends React.Component {
   state = {
@@ -109,23 +108,12 @@ export class CommentsCard extends React.Component {
 
     if (editing) {
       return (
-        <div className="card comment-box">
-          <div className="content">
-            <Form>
-              <Form.Field>
-                <TextArea autoHeight placeholder="Try adding multiple lines" value={data} onChange={this.handleChange} />
-              </Form.Field>
-              <button type="submit" className="ui medium teal button" onClick={this.handleEdit}>Edit Comment</button>
-              <button
-                className="ui medium secondary button"
-                onClick={this.handleEditToggle}
-                type="button"
-              >
-                Cancel
-              </button>
-            </Form>
-          </div>
-        </div>
+        <CommentEditForm
+          data={data}
+          handleChange={this.handleChange}
+          handleEdit={this.handleEdit}
+          handleEditToggle={this.handleEditToggle}
+        />
       );
     }
 
@@ -154,33 +142,20 @@ export class CommentsCard extends React.Component {
             &nbsp;&nbsp;Reply
             </span>
             <div />
-            <Modal size={size} open={openDelete} onClose={this.closeDeleteModal}>
-              <Modal.Header>Delete Your Comment</Modal.Header>
-              <Modal.Content>
-                <p>Are you sure you want to delete your comment</p>
-              </Modal.Content>
-              <Modal.Actions>
-                <Button secondary onClick={this.closeDeleteModal}>No</Button>
-                <Button className="ui medium teal button" icon="checkmark" labelPosition="right" content="Yes" onClick={this.handleDelete} />
-              </Modal.Actions>
-            </Modal>
+            <CommentDeleteModal
+              size={size}
+              openDelete={openDelete}
+              closeDeleteModal={this.closeDeleteModal}
+              handleDelete={this.handleDelete}
+            />
           </div>
           <div>
-            <Modal size={size} open={openReply} onClose={this.closeReplyModal}>
-              <Modal.Header>Reply to the Comment</Modal.Header>
-              <Modal.Content>
-                <Form>
-                  <Form.Field>
-                    <TextArea autoHeight placeholder="Type your reply here" onChange={this.handleReplyChange} />
-                  </Form.Field>
-                </Form>
-
-              </Modal.Content>
-              <Modal.Actions>
-                <Button secondary onClick={this.closeReplyModal}>Cancel</Button>
-                <Button className="ui medium teal button" icon="checkmark" labelPosition="right" content="Reply" onClick={this.handleReply} />
-              </Modal.Actions>
-            </Modal>
+            <CommentModal
+              openReply={openReply}
+              closeReplyModal={this.closeReplyModal}
+              handleReplyChange={this.handleReplyChange}
+              handleReply={this.handleReply}
+            />
           </div>
         </div>
 
