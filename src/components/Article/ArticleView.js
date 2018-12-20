@@ -11,7 +11,7 @@ import { isOwner } from '../../utils/permissions';
 import LikeButton from '../../containers/LikeButtons';
 import ShareButtons from '../SocialSharing';
 import '../../assets/styles/scss/index.sass';
-import TagList from '../../containers/Tag/tagList';
+import TagList from '../Tag';
 
 const ArticleView = ({ ...props }) => {
   const {

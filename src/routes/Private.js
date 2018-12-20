@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { getToken } from '../utils';
+import { isLoggedIn } from '../utils';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   /*
@@ -14,7 +14,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
    * */
   <Route
     {...rest}
-    render={props => (getToken() ? (
+    render={props => (isLoggedIn() ? (
       <Component {...props} />
     ) : (
       <Redirect

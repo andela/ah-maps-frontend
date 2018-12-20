@@ -5,7 +5,7 @@ export const authUserHeader = () => {
   const user = getToken();
   if (isLoggedIn()) {
     return {
-      Authorization: `Bearer ${user.user.token}`,
+      Authorization: `Bearer ${user.token}`,
     };
   }
   return {};
@@ -35,6 +35,10 @@ export const api = {
     editProfile: (username, data) => client.put(`/profile/update/${username}/`, data),
     postTag: () => client.post('tag/'),
     fetchTag: () => client.get('tag/'),
+    followUser: username => client.post(`profile/${username}/follow`),
+    unfollowUser: username => client.delete(`profile/${username}/follow`),
+    following: username => client.get(`profile/${username}/following`),
+    followers: username => client.get(`profile/${username}/followers`),
   },
   article: {
     list: params => client.get(`article/?${params}`),

@@ -13,7 +13,7 @@ export class Edit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: getToken().user.username,
+      username: getToken().username,
       bio: '',
       avatar: '',
       showUploadImage: false,
