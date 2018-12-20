@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
-  Button, Modal, Dimmer, Loader, Segment,
+  Dimmer, Loader, Segment, Button, Modal,
 } from 'semantic-ui-react';
 import {
   addRating, fetchRating,

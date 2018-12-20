@@ -6,4 +6,5 @@ export * from './auth';
 export * from './rating';
 export * from './profile';
 export * from './like';
+export * from './comments';
 export * from './tag';

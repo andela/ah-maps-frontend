@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Header } from 'semantic-ui-react';
 import { setArticles, getArticle, deleteArticle } from '../../redux/actions';
 import ArticleView from '../../components/Article/ArticleView';
+import CommentForm from '../Comment';
+import CommentList from '../Comment/commentList';
+import '../../components/Comment/styles.sass';
 
 export class Article extends Component {
   static propTypes = {
@@ -29,8 +33,7 @@ export class Article extends Component {
         this.setState({ loading: false });
         this.setState({ article: response.data });
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         this.setState({ loading: false });
       });
   }
@@ -65,6 +68,7 @@ export class Article extends Component {
   render() {
     const { article } = this.state;
     const { body } = article;
+    const { slug } = this.state;
     return body ? (
       <div>
         <ArticleView
@@ -73,6 +77,12 @@ export class Article extends Component {
           {...this.state}
           redirect={this.redirect}
         />
+        <div className="comment-container">
+          <Header as="h3">Comments</Header>
+          <CommentList slug={slug} />
+        </div>
+
+        <CommentForm slug={slug} />
       </div>
     ) : <div />;
   }

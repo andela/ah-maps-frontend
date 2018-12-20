@@ -7,6 +7,8 @@ import rating from './rating';
 import articlelist from './articlesList';
 import profileReducer from './profile';
 import like from './like';
+import comments from './comments';
+import commentList from './commentsList';
 import tag from './tag';
 
 /*
@@ -23,6 +25,8 @@ const allReducers = combineReducers({
   rating,
   profileReducer,
   like,
+  comments,
+  commentList,
   tag,
 });
 
