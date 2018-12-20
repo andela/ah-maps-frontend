@@ -11,6 +11,7 @@ import {
 import CommentModal from '../../components/Comment/CommentReplyModal';
 import CommentEditForm from '../../components/Comment/CommentEditForm';
 import CommentDeleteModal from '../../components/Comment/CommentDeleteModal';
+import CommentsExtraContent from '../../components/Comment/CommentsExtraContent';
 
 export class CommentsCard extends React.Component {
   state = {
@@ -126,22 +127,12 @@ export class CommentsCard extends React.Component {
             <div className="description" />
             {data}
           </div>
-          <div className="extra content">
-            <span onClick={this.handleEditToggle}>
-              <i className="edit icon" />
-            &nbsp;&nbsp;Edit
-            </span>
-            <span>&nbsp;&nbsp;</span>
-            <span onClick={this.showDeleteModal('small')}>
-              <i className="trash icon" />
-            &nbsp;&nbsp;Delete
-            </span>
-            <span>&nbsp;&nbsp;</span>
-            <span onClick={this.showReplyModal('small')}>
-              <i className="reply icon" />
-            &nbsp;&nbsp;Reply
-            </span>
-            <div />
+          <div>
+            <CommentsExtraContent
+              handleEditToggle={this.handleEditToggle}
+              showDeleteModal={this.this.showDeleteModal('small')}
+              showReplyModal={this.showReplyModal('small')}
+            />
             <CommentDeleteModal
               size={size}
               openDelete={openDelete}
