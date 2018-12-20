@@ -2,7 +2,7 @@ import { isLoggedIn, getToken } from './auth';
 
 export const isOwner = (username) => {
   if (isLoggedIn()) {
-    return username === getToken().user.username;
+    return username === getToken().username;
   }
   return false;
 };

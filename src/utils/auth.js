@@ -14,7 +14,10 @@ export const setToken = (token, key = TOKEN_KEY) => {
  * Get token from localstorage
  * @param {!string} key token object key
  */
-export const getToken = (key = TOKEN_KEY) => JSON.parse(localStorage.getItem(key));
+export const getToken = (key = TOKEN_KEY) => {
+  const userDetials = JSON.parse(localStorage.getItem(key));
+  return userDetials ? userDetials.user : {};
+};
 
 /**
  * Remove a token from the localstorage
@@ -28,7 +31,7 @@ export const removeToken = (key = TOKEN_KEY) => {
 export const isLoggedIn = () => {
   try {
     const user = getToken();
-    return !!user.user.token;
+    return !!user.token;
   } catch (error) { return error === false; }
 };
 export default setToken;
