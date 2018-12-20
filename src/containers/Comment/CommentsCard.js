@@ -130,7 +130,7 @@ export class CommentsCard extends React.Component {
           <div>
             <CommentsExtraContent
               handleEditToggle={this.handleEditToggle}
-              showDeleteModal={this.this.showDeleteModal('small')}
+              showDeleteModal={this.showDeleteModal('small')}
               showReplyModal={this.showReplyModal('small')}
             />
             <CommentDeleteModal
