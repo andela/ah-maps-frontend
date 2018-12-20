@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import StarRatings from 'react-star-ratings';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'semantic-ui-react';
+import {
+  Dimmer, Loader, Segment, Button, Modal,
+} from 'semantic-ui-react';
 import {
   addRating, fetchRating,
 } from '../../redux/actions';
 import './style.sass';
 import { isLoggedIn } from '../../utils/auth';
 import { isOwner } from '../../utils/permissions';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 
 
 class Rating extends Component {
@@ -99,8 +100,13 @@ class Rating extends Component {
 Rating.propTypes = {
   rate: PropTypes.func.isRequired,
   getRating: PropTypes.func.isRequired,
-  avgRating: PropTypes.number.isRequired,
   userRating: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  slug: PropTypes.string.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
   avgRating: state.rating.average_rating,

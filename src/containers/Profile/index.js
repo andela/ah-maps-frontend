@@ -11,7 +11,7 @@ export class Profile extends Component {
   componentDidMount() {
     const user = getToken();
 
-    const { user: { username } } = user;
+    const { username } = user;
     const { fetchProfile, fetchedProfile } = this.props;
     fetchProfile(username)
       .then((response) => {

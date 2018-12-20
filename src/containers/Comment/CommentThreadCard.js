@@ -8,7 +8,6 @@ import CommentUserCard from '../../components/Card/CommentUserCard';
 import { api } from '../../utils/api';
 import { isOwner } from '../../utils/permissions';
 
-
 export class CommentsThreadCard extends React.Component {
   state = {
     editing: false,
@@ -31,7 +30,6 @@ export class CommentsThreadCard extends React.Component {
     const { body } = this.props;
     this.setState({ data: body });
   }
-
 
   handleChange = (e) => {
     this.setState({
@@ -63,11 +61,9 @@ export class CommentsThreadCard extends React.Component {
 
   render() {
     const { editing, data } = this.state;
-
     const {
       date,
     } = this.props;
-
 
     if (editing) {
       return (

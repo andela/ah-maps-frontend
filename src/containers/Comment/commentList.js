@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Card from '../../components/Card';
-import { CommentsCard } from './CommentsCard';
+import CommentsCard from './CommentsCard';
 import CommentThread from '../../components/Comment/CommentThread';
 import './Comment.sass';
 import { getComments, setComments } from '../../redux/actions/commentsList';
 
 
-class CommentList extends Component {
+export class CommentList extends Component {
   state = {
     loading: true,
   }

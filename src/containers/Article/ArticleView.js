@@ -5,7 +5,7 @@ import { Header } from 'semantic-ui-react';
 import { setArticles, getArticle, deleteArticle } from '../../redux/actions';
 import ArticleView from '../../components/Article/ArticleView';
 import CommentForm from '../Comment';
-import CommentList from '../Comment/CommentList';
+import CommentList from '../Comment/commentList';
 import '../../components/Comment/styles.sass';
 
 export class Article extends Component {

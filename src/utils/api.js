@@ -5,7 +5,7 @@ export const authUserHeader = () => {
   const user = getToken();
   if (isLoggedIn()) {
     return {
-      Authorization: `Bearer ${user.user.token}`,
+      Authorization: `Bearer ${user.token}`,
     };
   }
   return {};
@@ -33,9 +33,13 @@ export const api = {
     fetchrate: data => client.get(`rate/${data.slug}/`, { your_rating: data.rating }),
     profile: username => client.get(`profile/${username}/`, { user: username }),
     editProfile: (username, data) => client.put(`/profile/update/${username}/`, data),
+    followUser: username => client.post(`profile/${username}/follow`),
+    unfollowUser: username => client.delete(`profile/${username}/follow`),
+    following: username => client.get(`profile/${username}/following`),
+    followers: username => client.get(`profile/${username}/followers`),
   },
   article: {
-    list: () => client.get('article/'),
+    list: params => client.get(`article/?${params}`),
     single: slug => client.get(`article/detail/${slug}/`),
     update: (slug, data) => client.put(`article/update/${slug}/`, data),
     delete: slug => client.delete(`article/delete/${slug}/`),
@@ -45,7 +49,7 @@ export const api = {
     create: (slug, data) => client.post(`articles/comment/${slug}/comment/`, data),
     list: slug => client.get(`articles/comment/${slug}/`),
     edit: (id, data) => client.put(`articles/comment/update/${id}/`, data),
-    delete: (id) => { console.log('deleting.......'); client.delete(`articles/comment/delete/${id}/`); },
+    delete: id => client.delete(`articles/comment/delete/${id}/`),
     createthread: (slug, id, data) => client.post(`articles/comment/${slug}/${id}/`, data),
     editThread: (slug, id, data) => client.put(`articles/comment/${slug}/${id}/`, data),
 

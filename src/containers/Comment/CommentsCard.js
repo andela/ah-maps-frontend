@@ -11,7 +11,7 @@ import { isOwner } from '../../utils/permissions';
 import {
   getComments, deleteComments, editComments, createThread,
 } from '../../redux/actions';
-
+import CommentModal from '../../components/Comment/CommentModal';
 
 export class CommentsCard extends React.Component {
   state = {
@@ -46,10 +46,10 @@ export class CommentsCard extends React.Component {
   }
 
   componentDidMount = () => {
-    const { body } = this.props;
+    const { body, createTheThread } = this.props;
+    console.warn(createTheThread);
     this.setState({ data: body });
   }
-
 
   handleChange = (e) => {
     this.setState({
@@ -86,10 +86,10 @@ export class CommentsCard extends React.Component {
 
   handleReply = () => {
     const {
-      slug, id, refresh, createthread,
+      slug, id, refresh, createTheThread,
     } = this.props;
     const { reply } = this.state;
-    createthread(slug, id, { body: reply }).then(() => {
+    createTheThread(slug, id, { body: reply }).then(() => {
       refresh();
       this.closeReplyModal();
     });
@@ -103,7 +103,6 @@ export class CommentsCard extends React.Component {
 
   render() {
     const { editing, data } = this.state;
-
     const {
       author, date,
     } = this.props;
@@ -200,21 +199,12 @@ export class CommentsCard extends React.Component {
             &nbsp;&nbsp;Reply
               </span>
               <div>
-                <Modal size={size} open={openReply} onClose={this.closeReplyModal}>
-                  <Modal.Header>Reply to the Comment</Modal.Header>
-                  <Modal.Content>
-                    <Form>
-                      <Form.Field>
-                        <TextArea autoHeight placeholder="Type your reply here" onChange={this.handleReplyChange} />
-                      </Form.Field>
-                    </Form>
-
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button secondary onClick={this.closeReplyModal}>Cancel</Button>
-                    <Button className="ui medium teal button" icon="checkmark" labelPosition="right" content="Reply" onClick={this.handleReply} />
-                  </Modal.Actions>
-                </Modal>
+                <CommentModal
+                  openReply={openReply}
+                  closeReplyModal={this.closeReplyModal}
+                  handleReplyChange={this.handleReplyChange}
+                  handleReply={this.handleReply}
+                />
               </div>
             </div>
           </div>
@@ -230,7 +220,7 @@ CommentsCard.propTypes = {
   date: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   refresh: PropTypes.func.isRequired,
-  createthread: PropTypes.func.isRequired,
+  createTheThread: PropTypes.func.isRequired,
   removeComment: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   editcomment: PropTypes.func.isRequired,
@@ -243,7 +233,7 @@ const matchDispatchToProps = dispatch => bindActionCreators({
   fetchComments: getComments,
   removeComment: deleteComments,
   editcomment: editComments,
-  createthread: createThread,
+  createTheThread: createThread,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(CommentsCard);

@@ -6,7 +6,7 @@ const Card = ({ children }) => (
   <Container>
     <Grid.Row centered>
       <Grid.Column>
-        <div className="ui link cards">
+        <div className="ui link cards pagination__container">
           {children}
         </div>
       </Grid.Column>
