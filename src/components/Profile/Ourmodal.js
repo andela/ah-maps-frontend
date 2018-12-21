@@ -60,7 +60,7 @@ export class Edit extends Component {
       this.close();
       e.preventDefault();
       const {
-        editprofile, profile,
+        editprofile,
       } = this.props;
       const { bio, username, imageFile } = this.state;
 

@@ -37,7 +37,9 @@ export class ArticleForm extends Component {
             image: article.image,
             previousTags: article.tags,
           }, () => {
-            this.turnTagsToOptions();
+            try {
+              this.turnTagsToOptions();
+            } catch (error) {}
           });
         })
         .catch(err => console.error(err));

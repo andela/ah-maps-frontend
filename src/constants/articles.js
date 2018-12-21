@@ -4,7 +4,7 @@ export const EDITOR_CONTENT = 'EDITOR_CONTENT';
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const REMOVE_ARTICLE_MESSAGE = 'REMOVE_ARTICLE_MESSAGE';
 export const ARTICLE_IMAGE = 'https://react.semantic-ui.com/images/wireframe/image-text.png';
-export const PROFILE_AVATAR = 'https://react.semantic-ui.com/images/avatar/large/patrick.png';
+export const PROFILE_AVATAR = 'https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png';
 export const ARTICLE = {
   image: ARTICLE_IMAGE,
   author: {
