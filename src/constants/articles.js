@@ -15,5 +15,6 @@ export const ARTICLE = {
   title: 'article title',
   reading_time: '1 min',
   readingTime: '1 min',
+  tags: ['tag1', 'tag2'],
   slug: 'how-to-train-your-dragon',
 };

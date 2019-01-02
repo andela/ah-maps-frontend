@@ -55,7 +55,32 @@ const routes = [
     component: ArticlesList,
   },
   {
+    path: '/search/:q',
+    name: 'Search Articles',
+    component: ArticlesList,
+  },
+  {
+    path: '/search/',
+    name: 'Search Articles',
+    component: ArticlesList,
+  },
+  {
+    path: '/author/:author',
+    name: 'Search Author Articles',
+    component: ArticlesList,
+  },
+  {
+    path: '/tags/:tag',
+    name: 'Search Tag Articles',
+    component: ArticlesList,
+  },
+  {
     path: '/article/:slug',
+    name: 'View Article',
+    component: ArticleView,
+  },
+  {
+    path: '/articles/:title',
     name: 'View Article',
     component: ArticleView,
   },

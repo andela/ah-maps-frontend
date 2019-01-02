@@ -14,7 +14,7 @@ const ArticleCard = ({ ...props }) => {
 
     <div className="card" role="presentation">
 
-      <div className="image" onClick={() => redirect()} role="presentation">
+      <div className="article image" onClick={() => redirect()} role="presentation">
         <img alt="article" src={image || ARTICLE_IMAGE} />
       </div>
       <div className="content">

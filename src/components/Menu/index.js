@@ -6,32 +6,15 @@ import { isLoggedIn } from '../../utils/auth';
 export default class MenuExampleBasic extends Component {
   state = {}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
-    const { activeItem } = this.state;
-
     return (
       <Menu secondary inverted pointing className="large align-items-right">
         <Menu.Item className="toc">
           <i className="sidebar icon" />
         </Menu.Item>
-        <Menu.Item
-          name="editorials"
-          active={activeItem === 'editorials'}
-          onClick={this.handleItemClick}
-        >
-        Politics
-        </Menu.Item>
-        <Menu.Item>
-            Religion
-        </Menu.Item>
-
-        <Menu.Item name="reviews" active={activeItem === 'reviews'} onClick={this.handleItemClick}>
-          Reviews
-        </Menu.Item>
-
-        <AuthMenuItem authenticated={isLoggedIn()} />
+        <div className="right menu">
+          <AuthMenuItem {...this.props} authenticated={isLoggedIn()} />
+        </div>
       </Menu>
     );
   }

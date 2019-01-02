@@ -19,6 +19,7 @@ describe('<ArticleList />', () => {
         articles={{ results: [ARTICLE] }}
         history={{}}
         addArticles={() => {}}
+        match={{ params: {} }}
         fetchArticles={api.article.single}
       />,
     );

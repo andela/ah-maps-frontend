@@ -2,9 +2,9 @@ import React from 'react';
 import TemplateWithoutMenu from './Templates/TemplateWithoutMenu';
 import LoginComponent from '../containers/Login';
 
-const Login = ({ ...props }) => (
+const Login = () => (
   <TemplateWithoutMenu>
-    <LoginComponent {...props} />
+    <LoginComponent />
   </TemplateWithoutMenu>
 );
 

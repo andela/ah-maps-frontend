@@ -10,7 +10,7 @@ const FixedMenu = ({ ...props }) => {
       <div className="ui container">
         <div className="right menu">
           <RightMenu />
-          <AuthMenuItem authenticated={isLoggedIn()} />
+          <AuthMenuItem {...props} authenticated={isLoggedIn()} />
         </div>
       </div>
     </div>

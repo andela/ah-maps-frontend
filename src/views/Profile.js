@@ -2,9 +2,9 @@ import React from 'react';
 import TemplateWithMenu from './Templates/TemplateWithMenu';
 import ProfileComponent from '../containers/Profile';
 
-const Profile = ({ ...props }) => (
+const Profile = () => (
   <TemplateWithMenu>
-    <ProfileComponent {...props} />
+    <ProfileComponent />
   </TemplateWithMenu>
 );
 

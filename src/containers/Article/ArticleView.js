@@ -27,8 +27,9 @@ export class Article extends Component {
 
   componentDidMount() {
     const { match: { params }, singleArticle } = this.props;
-    this.setState({ slug: params.slug });
-    singleArticle(params.slug)
+    const slug = params.slug ? params.slug : params.title;
+    this.setState({ slug });
+    singleArticle(slug)
       .then((response) => {
         this.setState({ loading: false });
         this.setState({ article: response.data });
