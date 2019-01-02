@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Card from '../../components/Card';
 import CommentsCard from './CommentsCard';
 import CommentThread from '../../components/Comment/CommentThread';
 import './Comment.sass';
 import { getComments, setComments } from '../../redux/actions/commentsList';
+import CommentForm from './index';
+// import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.2/node_modules/redux';
 
 
 export class CommentList extends Component {
@@ -18,7 +19,9 @@ export class CommentList extends Component {
   }
 
   refreshComments = () => {
-    const { addComments, fetchComments, slug } = this.props;
+    const {
+      addComments, fetchComments, slug,
+    } = this.props;
     fetchComments(slug)
       .then((response) => {
         this.setState({ loading: false });
@@ -29,10 +32,10 @@ export class CommentList extends Component {
       });
   }
 
-
   render() {
     const { comments } = this.props;
     const { loading } = this.state;
+
     return loading
       ? (
         <div className="ui loading form text-center">Loading...</div>
@@ -44,8 +47,6 @@ export class CommentList extends Component {
               {comments.map(comment => (
                 <React.Fragment>
                   <CommentsCard
-                    {...this.props}
-                    {...comment}
                     body={comment.body}
                     author={comment.author}
                     image={comment.author.image}
@@ -56,7 +57,6 @@ export class CommentList extends Component {
                     refresh={this.refreshComments}
                   />
                   <div className="comment-replies">
-                    <Header as="h4">Replies</Header>
                     <CommentThread
                       id={comment.id}
                       thread={comment.thread}
@@ -76,9 +76,7 @@ export class CommentList extends Component {
   }
 }
 
-export const mapStateToProps = state => ({
-  comments: state.commentList.comments,
-});
+export const mapStateToProps = ({ commentList }) => commentList;
 
 const mapDispatchToProps = {
   addComments: setComments,

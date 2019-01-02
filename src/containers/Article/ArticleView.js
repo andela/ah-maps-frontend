@@ -78,7 +78,7 @@ export class Article extends Component {
           redirect={this.redirect}
         />
         <div className="comment-container">
-          <Header as="h3">Comments</Header>
+          <Header as="h3" className="comments-header">Comments</Header>
           <CommentList slug={slug} />
         </div>
 
