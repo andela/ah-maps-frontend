@@ -17,9 +17,9 @@ export const offScreen = () => {
   const banner = document.querySelectorAll('.top.fixed');
   banner[0].classList.remove('hidden');
 };
-const TemplateDefault = ({ children, ...props }) => (
+const TemplateDefault = ({ children }) => (
   <React.Fragment>
-    <FixedMenu {...props} RightMenu={() => ''} />
+    <FixedMenu RightMenu={() => ''} />
     <SidebarMenu />
     <div className="pusher">
       <Logo />
@@ -30,7 +30,7 @@ const TemplateDefault = ({ children, ...props }) => (
       >
         <div className="ui inverted vertical banner center aligned segment" id="banner">
           <Container>
-            <Menu {...props} />
+            <Menu />
           </Container>
           <Intro />
         </div>

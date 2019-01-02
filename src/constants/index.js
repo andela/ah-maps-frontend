@@ -8,4 +8,3 @@ export * from './profile';
 export * from './like';
 export * from './comments';
 export * from './tag';
-export * from './search';

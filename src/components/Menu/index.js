@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import AuthMenuItem from './AuthMenuItem';
-import Search from '../../containers/Search';
 import { isLoggedIn } from '../../utils/auth';
 
 export default class MenuExampleBasic extends Component {
@@ -14,7 +13,6 @@ export default class MenuExampleBasic extends Component {
           <i className="sidebar icon" />
         </Menu.Item>
         <div className="right menu">
-          <Search {...this.props} />
           <AuthMenuItem {...this.props} authenticated={isLoggedIn()} />
         </div>
       </Menu>
