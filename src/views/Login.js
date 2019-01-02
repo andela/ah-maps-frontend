@@ -3,7 +3,7 @@ import TemplateWithoutMenu from './Templates/TemplateWithoutMenu';
 import LoginComponent from '../containers/Login';
 
 const Login = ({ ...props }) => (
-  <TemplateWithoutMenu>
+  <TemplateWithoutMenu {...props}>
     <LoginComponent {...props} />
   </TemplateWithoutMenu>
 );

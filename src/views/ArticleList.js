@@ -4,7 +4,7 @@ import ArticleList from '../containers/Article/ArticleList';
 import Template from './Templates/TemplateWithMenu';
 
 const ArticleListPage = ({ ...props }) => (
-  <Template>
+  <Template {...props}>
     <Container>
       <ArticleList {...props} />
     </Container>

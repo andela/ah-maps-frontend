@@ -3,7 +3,7 @@ import ArticleView from '../../containers/Article/ArticleView';
 import Template from '../Templates/TemplateWithMenu';
 
 const ArticleViewPage = ({ ...props }) => (
-  <Template>
+  <Template {...props}>
     <ArticleView {...props} />
   </Template>
 );

@@ -11,3 +11,6 @@ export * from './like';
 export * from './comments';
 export * from './commentsList';
 export * from './tag';
+export {
+  addSearchedArticles, addSearchedAuthors, addSearchedTags,
+} from './search';
