@@ -1,5 +1,5 @@
 import { SET_ARTICLES } from '../../../constants';
-import { setArticles, getArticles, formatParams } from '../articleList';
+import { setArticles, formatParams } from '../articleList';
 
 describe('Article List reducer', () => {
   it('should dispatch SET_ARTICLES', () => {
