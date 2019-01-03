@@ -10,6 +10,7 @@ import like from './like';
 import comments from './comments';
 import commentList from './commentsList';
 import tag from './tag';
+import search from './search';
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -28,6 +29,7 @@ const allReducers = combineReducers({
   comments,
   commentList,
   tag,
+  search,
 });
 
 export default allReducers;

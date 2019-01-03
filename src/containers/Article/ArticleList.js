@@ -5,6 +5,7 @@ import Pagination from 'react-js-pagination';
 import { setArticles, getArticles } from '../../redux/actions';
 import Card from '../../components/Card';
 import ArticleCard from '../../components/Article/ArticleCard';
+import Result from '../../components/Search/Result';
 import './pagination.sass';
 
 export class ArticleList extends Component {
@@ -87,6 +88,7 @@ export class ArticleList extends Component {
         <div>
 
           <Card>
+            <Result searchKey={searchKey} searchValue={value} />
             <React.Fragment>
               {articles.results.map(article => (
 
