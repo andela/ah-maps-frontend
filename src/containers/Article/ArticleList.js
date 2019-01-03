@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Pagination from 'react-js-pagination';
+import { Container } from 'semantic-ui-react';
 import { setArticles, getArticles } from '../../redux/actions';
 import Card from '../../components/Card';
 import ArticleCard from '../../components/Article/ArticleCard';
@@ -62,7 +63,9 @@ export class ArticleList extends Component {
     const { loading, activePage, totalPages } = this.state;
     return loading
       ? (
-        <div className="ui loading form text-center">Loading...</div>
+        <Container className="load-home">
+          <div className="ui loading form text-center">Loading...</div>
+        </Container>
       )
       : (
         <div>

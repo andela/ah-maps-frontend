@@ -25,7 +25,7 @@ export class Bio extends Component {
           <div className="row">
             <div className="ui bio-data">
               <Avatar title={profile.username} source={profile.image || avatar} alt={profile.username} />
-              <p className="ui text center text-muted bio-text">{profile.username}</p>
+              <p className="ui text center text-muted bio-text username">{profile.username}</p>
               <p className="ui text center text-muted bio-text">{profile.bio}</p>
             </div>
           </div>
@@ -37,21 +37,25 @@ export class Bio extends Component {
         <div className="ui row follow-row">
           <div className="ui bio-following text center follow-data">
             <h6>
-              <a href="true">
+              <a href="true" className="icon-number">
                 <Icon name="user" />
                 {followers}
               </a>
+              <span className="profile-labels">
               followers
+              </span>
             </h6>
           </div>
           <div className="ui row follow-row2">
             <div className="ui text-center">
               <h6>
-                <a href="true">
+                <a href="true" className="icon-number">
                   <Icon name="user" />
                   {following}
                 </a>
+                <span className="profile-labels">
                 following
+                </span>
               </h6>
             </div>
           </div>

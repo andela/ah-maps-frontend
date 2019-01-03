@@ -69,7 +69,6 @@ const ArticleView = ({ ...props }) => {
                 read_only
               />
             ) : <div />}
-            <hr className="hr-line" />
             <div className="ui grid top padded">
               <div className="four column row">
                 <div className="right floated column">
