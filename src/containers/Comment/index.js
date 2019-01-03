@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Commentarea from '../../components/Comment';
 import { api } from '../../utils/api';
 import { addComment, addCommentError } from '../../redux/actions';
+import { getComments, setComments } from '../../redux/actions/commentsList';
 
 class CommentForm extends Component {
     state ={
@@ -22,6 +23,7 @@ class CommentForm extends Component {
 
         const {
           addcomment, addError, slug,
+          fetchComments, addComments,
         } = this.props;
         const {
           data,
@@ -32,6 +34,10 @@ class CommentForm extends Component {
             .then((response) => {
               const res = response.data;
               addcomment(res);
+              fetchComments(slug)
+                .then((resp) => {
+                  addComments(resp.data);
+                });
             })
             .catch((error) => {
               let issue = {};
@@ -47,7 +53,6 @@ class CommentForm extends Component {
             });
         }
       }
-
 
       render() {
         const { body } = this.state;
@@ -72,7 +77,8 @@ CommentForm.propTypes = {
   addcomment: PropTypes.func.isRequired,
   addError: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
-
+  addComments: PropTypes.func.isRequired,
+  fetchComments: PropTypes.func.isRequired,
 };
 
 export const mapStateToProps = state => ({
@@ -82,6 +88,9 @@ export const mapStateToProps = state => ({
 const matchDispatchToProps = dispatch => bindActionCreators({
   addcomment: addComment,
   addError: addCommentError,
+  addComments: setComments,
+  fetchComments: getComments,
+
 }, dispatch);
 
 
