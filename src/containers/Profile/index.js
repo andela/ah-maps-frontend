@@ -22,7 +22,7 @@ export class Profile extends Component {
 
   render() {
     const {
-      profile, followers, following,
+      profile, followers, following, followingData, followersData
     } = this.props;
 
     return (
@@ -31,6 +31,8 @@ export class Profile extends Component {
           profile={profile}
           followers={followers}
           following={following}
+          followingData={followingData}
+          followersData={followersData}
         />
       </div>
     );
@@ -41,6 +43,9 @@ const mapStateToProps = state => ({
   followers: state.profileReducer.followers,
   following: state.profileReducer.following,
   profile: state.profileReducer.profile,
+  followingData: state.profileReducer.followingData,
+  followersData: state.profileReducer.followersData,
+
 });
 
 const mapDispatchToProps = {
