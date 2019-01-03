@@ -6,6 +6,7 @@ import { Container } from 'semantic-ui-react';
 import { setArticles, getArticles } from '../../redux/actions';
 import Card from '../../components/Card';
 import ArticleCard from '../../components/Article/ArticleCard';
+import Result from '../../components/Search/Result';
 import './pagination.sass';
 
 export class ArticleList extends Component {
@@ -19,11 +20,24 @@ export class ArticleList extends Component {
     activePage: 1,
     totalPages: 10,
     itemsCountPerPage: 10,
+    searchKey: 'Articles',
+    value: '',
 
   }
 
   componentDidMount() {
-    this.refreshArticles();
+    const { match: { params } } = this.props;
+    const q = params.q ? params.q : null;
+    const author = params.author ? params.author : null;
+    const tag = params.tag ? params.tag : null;
+
+    Object.entries(params).forEach(
+      ([key, value]) => {
+        const searchKey = key === 'q' ? 'search' : key;
+        this.setState({ searchKey, value });
+      },
+    );
+    this.refreshArticles(q, author, tag);
   }
 
   handlePageChange = (pageNumber) => {
@@ -45,9 +59,12 @@ export class ArticleList extends Component {
       });
   }
 
-  refreshArticles = () => {
+  refreshArticles = (q = null, author = null, tag = null) => {
     const { addArticles, fetchArticles } = this.props;
-    fetchArticles({})
+    let params = q ? { q } : {};
+    params = author ? { ...q, author } : params;
+    params = tag ? { ...q, tag } : params;
+    fetchArticles(params)
       .then((response) => {
         this.setState({ loading: false });
         addArticles(response.data);
@@ -60,7 +77,10 @@ export class ArticleList extends Component {
 
   render() {
     const { articles } = this.props;
-    const { loading, activePage, totalPages } = this.state;
+    const {
+      loading, activePage, totalPages,
+      searchKey, value,
+    } = this.state;
     return loading
       ? (
         <Container className="load-home">
@@ -71,6 +91,7 @@ export class ArticleList extends Component {
         <div>
 
           <Card>
+            <Result searchKey={searchKey} searchValue={value} />
             <React.Fragment>
               {articles.results.map(article => (
 

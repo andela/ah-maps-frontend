@@ -1,12 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Icon } from 'semantic-ui-react';
-import { removeToken } from '../../utils/auth';
+import { Image, Dropdown } from 'semantic-ui-react';
+import { removeToken, getToken } from '../../utils';
+import { PROFILE_AVATAR, TOKEN_KEY } from '../../constants';
+
 
 const AuthMenuItem = ({ ...props }) => {
-  const { authenticated } = props;
-
+  const { authenticated, history } = props;
+  const trigger = (
+    <span>
+      <Image avatar src={PROFILE_AVATAR} />
+      {' '}
+      {getToken().username || 'Username'}
+    </span>
+  );
+  const options = [
+    {
+      key: 'user',
+      text: 'Profile',
+      icon: 'user',
+      onClick: () => {
+        history.push('/profile');
+      },
+    },
+    {
+      key: 'settings',
+      text: 'New Article',
+      icon: 'plus circle',
+      onClick: () => {
+        history.push('/article');
+      },
+    },
+    {
+      key: 'sign-out', text: 'Sign Out', icon: 'sign out', onClick: () => removeToken(TOKEN_KEY, true),
+    },
+  ];
   return (
 
     <React.Fragment>
@@ -29,19 +58,7 @@ const AuthMenuItem = ({ ...props }) => {
         : (
           <React.Fragment>
             <div className="item">
-              <Link to="/profile">
-                <Icon name="user" size="big" />
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="/article">
-                <Icon name="plus circle" size="big" />
-              </Link>
-            </div>
-            <div className="item">
-              <a href="#logout" id="logout" onClick={() => removeToken()}>
-                <span className="ui primary button theme-button-color">Logout</span>
-              </a>
+              <Dropdown trigger={trigger} options={options} pointing="top left" />
             </div>
           </React.Fragment>
         )
@@ -54,6 +71,7 @@ const AuthMenuItem = ({ ...props }) => {
 
 AuthMenuItem.propTypes = {
   authenticated: PropTypes.bool,
+  history: PropTypes.shape({}).isRequired,
 };
 AuthMenuItem.defaultProps = {
   authenticated: false,

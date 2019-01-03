@@ -8,17 +8,13 @@ const options = new ReactRouterEnzymeContext();
 describe('<AuthMenuItem />', () => {
   it('renders Menu without authentication component without crashing', () => {
     const wrapper = mount(
-      <AuthMenuItem authenticated={false} />, options.get(),
+      <AuthMenuItem
+        authenticated={false}
+        history={{}}
+      />,
+      options.get(),
     );
-    expect(wrapper.find('#login')).toHaveLength(1);
-  });
-
-  it('renders AuthMenuItem authentication component without crashing', () => {
-    const wrapper = mount(
-      <AuthMenuItem authenticated />, options.get(),
-    );
-    const node = wrapper.find('#logout');
-    expect(node).toHaveLength(1);
-    node.simulate('click');
+    const node1 = wrapper.find('#login');
+    expect(node1).toHaveLength(1);
   });
 });

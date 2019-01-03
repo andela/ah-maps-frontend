@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import FixedMenu from '../../components/Menu/FixedMenu';
 import Logo from '../../components/Menu/Logo';
 
-const TemplateWithMenu = ({ children }) => (
+const TemplateWithMenu = ({ children, ...props }) => (
   <React.Fragment>
-    <FixedMenu fixed="fixed" hidden="" RightMenu={() => ''} />
+    <FixedMenu {...props} fixed="fixed" hidden="" RightMenu={() => ''} />
     <div className="pusher">
       <Logo />
       <div className="main-content">

@@ -53,7 +53,7 @@ const ArticleView = ({ ...props }) => {
           </Grid.Column>
           {image
           && (
-          <Grid.Column className="featured-image">
+          <Grid.Column className="featured-image article image">
             <Image src={image || ARTICLE_IMAGE} />
           </Grid.Column>
           )}

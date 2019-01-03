@@ -5,9 +5,9 @@ import App from '../index';
 import FixedMenu from '../FixedMenu';
 
 it('renders Menu component without crashing', () => {
-  shallow(<FixedMenu RightMenu={() => ''} />);
+  shallow(<FixedMenu RightMenu={() => ''} history={{}} />);
 });
 
 it('renders Fixed Menu component without crashing', () => {
-  shallow(<App />);
+  shallow(<App history={{}} />);
 });
