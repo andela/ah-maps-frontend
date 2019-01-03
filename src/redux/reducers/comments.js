@@ -1,5 +1,5 @@
 import {
-  ADD_COMMENT_ERROR, ADD_COMMENT,
+  ADD_COMMENT_ERROR, ADD_COMMENT, ADD_COMMENT_SUCCESS,
 } from '../../constants';
 
 export const initialState = {
