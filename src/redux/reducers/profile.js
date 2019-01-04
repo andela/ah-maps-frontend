@@ -11,6 +11,8 @@ export const initialState = {
   modal: false,
   followers: [],
   following: [],
+  followersData: [],
+  followingData: []
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -32,6 +34,8 @@ export default (state = initialState, { type, payload }) => {
         profile: payload,
         followers: payload.followers.length,
         following: payload.following.length,
+        followingData: payload.following,
+        followersData: payload.followers,
       };
     default:
       return state;

@@ -62,8 +62,8 @@ export class FollowButton extends Component {
     return (
       <div className={loading ? 'ui loading form FollowBtn' : 'FollowBtn'}>
         <button className={isLoggedIn() ? 'button-follow' : 'hidden button-follow'} type="button" onClick={this.followHandler}>
-          {following && <span>Follow</span>}
-          {!following && <span>unFollow</span>}
+          {following && <span>follow</span>}
+          {!following && <span>unfollow</span>}
         </button>
       </div>
     );

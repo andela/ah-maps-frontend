@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
 import { AVATAR } from '../../constants';
 import './Bio.sass';
 import Avatar from './Avatar';
 import Ourmodal from './Ourmodal';
+import Followers from './Followmodal';
 
 export class Bio extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export class Bio extends Component {
 
   render() {
     const {
-      profile, followers, following,
+      profile, followers, following, followingData, followersData
     } = this.props;
     const { avatar } = this.state;
     return (
@@ -34,32 +34,8 @@ export class Bio extends Component {
             <Ourmodal className="editProfile" profile={profile} />
           </div>
         </div>
-        <div className="ui row follow-row">
-          <div className="ui bio-following text center follow-data">
-            <h6>
-              <a href="true" className="icon-number">
-                <Icon name="user" />
-                {followers}
-              </a>
-              <span className="profile-labels">
-              followers
-              </span>
-            </h6>
-          </div>
-          <div className="ui row follow-row2">
-            <div className="ui text-center">
-              <h6>
-                <a href="true" className="icon-number">
-                  <Icon name="user" />
-                  {following}
-                </a>
-                <span className="profile-labels">
-                following
-                </span>
-              </h6>
-            </div>
-          </div>
-        </div>
+        <Followers followers={followersData} following={followingData} followingCount={following} followersCount={followers} />
+
       </div>
     );
   }
