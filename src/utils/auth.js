@@ -22,9 +22,11 @@ export const getToken = (key = TOKEN_KEY) => {
 /**
  * Remove a token from the localstorage
  * @param {!string} key token object key
+ * @param {!bool} redirect user after a token is removed
  */
-export const removeToken = (key = TOKEN_KEY) => {
+export const removeToken = (key = TOKEN_KEY, redirect = false) => {
   localStorage.removeItem(key);
+  if (redirect) window.location.href = '/';
 };
 
 /** check if user is logged in */
