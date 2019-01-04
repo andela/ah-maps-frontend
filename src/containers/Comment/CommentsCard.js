@@ -23,6 +23,10 @@ export class CommentsCard extends React.Component {
     replying: false,
   };
 
+  static getDerivedStateFromProps = (props, state) => ({
+    data: props.body,
+  })
+
   showDeleteModal = size => () => {
     this.setState(prevState => ({
       delete: !prevState.delete,
@@ -45,11 +49,6 @@ export class CommentsCard extends React.Component {
     this.setState({ openReply: false });
   }
 
-  componentDidMount = () => {
-    const { body, createTheThread } = this.props;
-    console.warn(createTheThread);
-    this.setState({ data: body });
-  }
 
   handleChange = (e) => {
     this.setState({
@@ -70,9 +69,11 @@ export class CommentsCard extends React.Component {
   }
 
   handleDelete = () => {
-    const { id, removeComment } = this.props;
-    removeComment(id);
-    this.closeDeleteModal();
+    const { id, removeComment, refresh } = this.props;
+    removeComment(id).then(() => {
+      refresh();
+      this.closeDeleteModal();
+    });
   }
 
   handleEdit = () => {
@@ -122,7 +123,10 @@ export class CommentsCard extends React.Component {
     return (
       isOwner(author.username) ? (
         <div className="card comment-box" role="presentation">
-          <CommentUserCard author={author} date={date} />
+          <div className="commentusercard">
+            <CommentUserCard author={author} date={date} />
+          </div>
+
           <div className="content">
             <div className="description" />
             {data}
@@ -158,7 +162,7 @@ export class CommentsCard extends React.Component {
               <div className="description" />
               {data}
             </div>
-            <div className="extra content">
+            <div className="extra content s-b-l">
               <span>&nbsp;&nbsp;</span>
               <span onClick={this.showReplyModal('small')}>
                 <i className="reply icon" />

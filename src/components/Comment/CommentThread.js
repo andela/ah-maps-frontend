@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Header } from 'semantic-ui-react';
 import Card from '../Card';
 import CommentsThreadCard from '../../containers/Comment/CommentThreadCard';
 

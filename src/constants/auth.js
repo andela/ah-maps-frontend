@@ -1,4 +1,4 @@
-export const TOKEN_KEY = 'mapsToken';
+export const TOKEN_KEY = 'mapToken';
 export const USER_TOKEN = {
   user: {
     email: 'map@gmail.com',

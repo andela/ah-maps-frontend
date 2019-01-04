@@ -10,7 +10,7 @@ const Articles = (props) => {
   const { items, history, match: { params } } = props;
   return (
     items.map(value => (
-      <div onClick={() => redirect(history, value.slug, params)} role="presentation" className="search__dropdown_item ui cursor pointer" key={value.title}>
+      <div onClick={() => redirect(history, value.slug, params)} role="presentation" className="search__dropdown_item ui cursor pointer" key={value.slug}>
         <div>
           <Image src={value.image || ARTICLE_IMAGE} avatar />
           <span>{value.title.substring(0, 30)}</span>

@@ -7,7 +7,7 @@ const CommentsExtraContent = ({ ...props }) => {
   } = props;
   return (
     <div>
-      <div className="extra content">
+      <div className="extra content s-b-l">
         <span onClick={handleEditToggle}>
           <i className="edit icon" />
             &nbsp;&nbsp;Edit

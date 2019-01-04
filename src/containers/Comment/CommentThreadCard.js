@@ -2,7 +2,7 @@ import React from 'react';
 import '../../components/Comment/styles.sass';
 import PropTypes from 'prop-types';
 import {
-  Form, TextArea, Modal, Button,
+  Modal, Button,
 } from 'semantic-ui-react';
 import CommentUserCard from '../../components/Card/CommentUserCard';
 import { api } from '../../utils/api';
@@ -83,7 +83,10 @@ export class CommentsThreadCard extends React.Component {
         isOwner(author.username) ? (
           <div className="comment-wrapper">
             <div className="card comment-thread" role="presentation">
-              <CommentUserCard author={author} date={date} />
+              <div className="commentusercard">
+                <CommentUserCard author={author} date={date} />
+              </div>
+
               <div className="content">
                 <div className="description-thread" />
                 {data}
