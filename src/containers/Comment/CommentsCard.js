@@ -162,7 +162,7 @@ export class CommentsCard extends React.Component {
               <div className="description" />
               {data}
             </div>
-            <div className="extra content">
+            <div className="extra content s-b-l">
               <span>&nbsp;&nbsp;</span>
               <span onClick={this.showReplyModal('small')}>
                 <i className="reply icon" />

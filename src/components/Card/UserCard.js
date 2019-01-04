@@ -14,11 +14,11 @@ const Card = ({ ...props }) => {
       <Grid columns={2}>
         <Grid.Row>
           <div className="user__avatar float-left">
-            <Image circular src={author.image || PROFILE_AVATAR} />
+            <img src={author.image || PROFILE_AVATAR} />
           </div>
           <div className="float-left user__details">
             <div className="author-container">
-              <div className="float-left username">
+              <div className="float-left username ">
                 {author.username}
               </div>
 
@@ -33,10 +33,10 @@ const Card = ({ ...props }) => {
               <br />
             </div>
             <div className="text-muted">
-              <div className="float-left username">
+              <div className="float-left username grey">
                 <span>{date}</span>
               </div>
-              <div className="float-left username">
+              <div className="float-left username grey">
                 <span>{readingTime}</span>
               </div>
             </div>

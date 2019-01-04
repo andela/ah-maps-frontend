@@ -12,6 +12,7 @@ const tagList = ({ ...props }) => {
 
     <Label.Group color="#ffffff" className="tag-container">
       { tags.map(value => <Label as="a">{value}</Label>) }
+      <hr className="hr-line" />
     </Label.Group>
   );
 };

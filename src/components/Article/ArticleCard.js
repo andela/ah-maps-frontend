@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ARTICLE_IMAGE } from '../../constants';
 import Rating from '../../containers/Rating';
+import './styles.sass';
 
 const ArticleCard = ({ ...props }) => {
   const {
@@ -12,7 +13,7 @@ const ArticleCard = ({ ...props }) => {
   };
   return (
 
-    <div className="card" role="presentation">
+    <div className="card shadow" role="presentation">
 
       <div className="article image" onClick={() => redirect()} role="presentation">
         <img alt="article" src={image || ARTICLE_IMAGE} />
